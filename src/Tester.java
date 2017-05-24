@@ -28,18 +28,34 @@ public class Tester {
 
 
         for (int i = 0; i < 16; i++) {
-            if (i % 2 == 1) beat1[i] = true;
+            if (i % 7 == 1) beat1[i] = true;
+            if (i % 12 == 0) beat1[i] = true;
+            if (i % 6 == 0) beat2[i] = true;
             if (i % 3 == 0) beat2[i] = true;
             beat3[i] = true;
         }
 
-        player.updateLoop(1, beat1);
-        player.updateLoop(2, beat2);
-        player.updateLoop(0, beat3);
+        player.addLoop(1, beat1);
+        player.addLoop(2, beat2);
+        player.addLoop(0, beat3);
 
         for (int i = 0; i < 64; i++) {
             player.play();
-            Thread.sleep(250);
+            Thread.sleep(200);
+        }
+
+        player.clearLoop(0);
+
+        for (int i = 0; i < 32; i++) {
+            player.play();
+            Thread.sleep(200);
+        }
+
+        player.addLoop(0, beat3);
+
+        for (int i = 0; i < 64; i++) {
+            player.play();
+            Thread.sleep(200);
         }
 
 

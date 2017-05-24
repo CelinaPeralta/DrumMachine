@@ -30,7 +30,7 @@ public class Controller {
             return;
 
         //where beats is a boolean array of size 16
-        player.updateLoop(instrument, beats);
+        player.addLoop(instrument, beats);
 
     }
 

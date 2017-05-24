@@ -25,7 +25,7 @@ public class Player {
 
     }
 
-    public void updateLoop(int instrument, boolean[] newLoop) {
+    public void addLoop(int instrument, boolean[] newLoop) {
 
         //will be called after each loop
 
