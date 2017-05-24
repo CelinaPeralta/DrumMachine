@@ -14,7 +14,7 @@ public class Controller {
     private int tempo;
     private String currentInstrument = "";
 
-    public Controller() {
+    public Controller() throws Exception{
 
         player = new Player();
 
