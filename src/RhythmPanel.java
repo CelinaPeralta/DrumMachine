@@ -10,25 +10,26 @@ import java.awt.event.ActionListener;
  */
 public class RhythmPanel extends JPanel {
 
-    private Controller controller;
+    private Player player;
     private int instrument;
     private boolean[] beats = new boolean[16];
+    private JCheckBox[] jCheckBoxes;
 
 
-    public RhythmPanel(Player player){
+    public RhythmPanel(Player player) {
         super(new BorderLayout());
 
         instrument = 0;
 
-        this.controller = controller;
+        this.player = player;
 
-        setLayout(new GridLayout(1,16,5,3));
+        setLayout(new GridLayout(1, 16, 5, 3));
 
-        JCheckBox[] jCheckBoxes = new JCheckBox[16];
+        jCheckBoxes = new JCheckBox[16];
 
-        for(int x = 0; x < jCheckBoxes.length; x++){
+        for (int x = 0; x < jCheckBoxes.length; x++) {
             JCheckBox beat = new JCheckBox();
-            beat.addActionListener(new BeatButtonListener(1));
+            beat.addActionListener(new BeatButtonListener(x));
 
             this.add(beat);
         }
@@ -69,26 +70,30 @@ public class RhythmPanel extends JPanel {
 
     }
 
-    public Controller getController(){
-        return controller;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setInstrument(int instrument){
+    public void setInstrument(int instrument) {
         this.instrument = instrument;
         beats = new boolean[16];
     }
 
-    public class BeatButtonListener implements ActionListener{
+    public boolean[] getBeats() {
+        return beats;
+    }
+
+    public class BeatButtonListener implements ActionListener {
 
         private int beat;
 
-        public BeatButtonListener(int beat){
+        public BeatButtonListener(int beat) {
             this.beat = beat;
         }
 
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             beats[beat] = !beats[beat];
-            controller.addLoop(instrument, beats);
+            player.addLoop(instrument, beats);
         }
     }
 }

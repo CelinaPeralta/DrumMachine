@@ -9,8 +9,8 @@ public class Player {
 
     //loop has 16 beats, each beat contains arraylist for different instruments
 
-    private Sound[][] audioClips = new Sound[16][17];
-    private boolean[][] beats = new boolean[16][17];
+    private Sound[][] audioClips = new Sound[16][DrumSounds.NUM_SOUNDS];
+    private boolean[][] beats = new boolean[16][DrumSounds.NUM_SOUNDS];
     private static int beat_count = 0;
 
 

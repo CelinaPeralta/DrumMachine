@@ -29,15 +29,15 @@ public class Tester {
 
         for (int i = 0; i < 16; i++) {
             if (i % 3 == 1) beat1[i] = true;
-            if (i % 5 == 0) beat1[i] = true;
-            if (i % 2 == 1) beat2[i] = true;
+            if (i % 4 == 0) beat1[i] = true;
+            if (i % 3 == 1) beat2[i] = true;
             beat3[i] = true;
         }
 
         //0 = hihat, 1 = kick, 2 = snare
+        player.addLoop(0, beat3);
         player.addLoop(1, beat1);
         player.addLoop(2, beat2);
-        player.addLoop(0, beat3);
 
         playLoop(2, TEMPO);
 

@@ -5,6 +5,8 @@
 
 public class DrumSounds {
 
+    public static final int NUM_SOUNDS = 11;
+
     public Sound AC;
     public Sound BD;
     public Sound SD;
