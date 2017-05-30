@@ -19,44 +19,40 @@ public class Tester {
     private static Player player;
 
     public static void main(String[] args) throws Exception {
-        
+
         player = new Player();
+        int TEMPO = 200;
 
         boolean[] beat1 = new boolean[16];
         boolean[] beat2 = new boolean[16];
         boolean[] beat3 = new boolean[16];
-        boolean[] beat4 = new boolean[16];
-        boolean[] beat5 = new boolean[16];
 
         for (int i = 0; i < 16; i++) {
-            if (i % 7 == 1) beat1[i] = true;
-            if (i % 12 == 0) beat1[i] = true;
-            if (i % 6 == 0) beat2[i] = true;
-            if (i % 3 == 0) beat2[i] = true;
+            if (i % 3 == 1) beat1[i] = true;
+            if (i % 5 == 0) beat1[i] = true;
+            if (i % 2 == 1) beat2[i] = true;
             beat3[i] = true;
-            beat4[i] = (Math.random() < 0.5);
-            beat5[i] = (Math.random() < 0.5);
+        }
+
+        //0 = hihat, 1 = kick, 2 = snare
+        player.addLoop(1, beat1);
+        player.addLoop(2, beat2);
+        player.addLoop(0, beat3);
+
+        playLoop(2, TEMPO);
+
+        for (int i = 0; i < 4; i++) {
+            player.addLoop(0, randomBeat());
+            player.addLoop(2, randomBeat());
+            playLoop(1, TEMPO);
+
         }
 
         player.addLoop(1, beat1);
         player.addLoop(2, beat2);
         player.addLoop(0, beat3);
 
-        playLoop(2, 200);
-
-        player.clearLoop(0);
-        player.addLoop(2, beat4);
-
-        playLoop(1, 200);
-
-        player.addLoop(2, beat5);
-
-        playLoop(1, 200);
-
-        player.addLoop(2, beat2);
-        player.addLoop(0, beat3);
-
-        playLoop(2, 200);
+        playLoop(4, TEMPO);
     }
 
     private static void playLoop(int bars, int tempo) throws Exception {
@@ -64,6 +60,17 @@ public class Tester {
             player.play();
             Thread.sleep(tempo);
         }
+    }
+
+    private static boolean[] randomBeat() {
+        boolean[] beat = new boolean[16];
+
+        for (int i = 0; i < 16; i++) {
+            beat[i] = (Math.random() < 0.6);
+        }
+
+        return beat;
+
     }
 
 }
