@@ -33,11 +33,15 @@ public class ControlPanel extends JPanel{
         instrumentSlider.setMajorTickSpacing(1);
         instrumentSlider.addChangeListener(new InstrumentChangeListener());
 
+        add(instrumentSlider);
+        add(new JLabel("Instrument"));
+
         JRadioButton time4 = new JRadioButton("4", true);
         JRadioButton time3 = new JRadioButton("3");
         time4.setActionCommand("4");
         time3.setActionCommand("3");
 
+        time4.addActionListener(new TimeActionListener());
         time3.addActionListener(new TimeActionListener());
 
         ButtonGroup time = new ButtonGroup();
@@ -58,6 +62,17 @@ public class ControlPanel extends JPanel{
         startButton.addChangeListener(new StartChangeListener());
     }
 
+    public int getCurrentInstrument(){
+        return currentInstrument;
+    }
+
+    public int getTempo(){
+        return tempo;
+    }
+
+    public int getTimeSignature(){
+        return timeSignature;
+    }
 
     public class TempoChangeListener implements ChangeListener{
 
