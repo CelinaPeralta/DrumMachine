@@ -9,6 +9,8 @@ import java.lang.management.ThreadMXBean;
 public class DrumMachineUI extends JFrame {
 
     public static Player player;
+    public static RhythmPanel rhythmPanel;
+    public static ControlPanel controlPanel;
 
     public DrumMachineUI() throws Exception {
 
@@ -18,14 +20,14 @@ public class DrumMachineUI extends JFrame {
         player = new Player();
 
         //HeaderPanel headerPanel = new HeaderPanel();
-        //ControlPanel controlPanel = new ControlPanel();
+        controlPanel = new ControlPanel();
         //MixerPanel mixerPanel = new MixerPanel();
-        RhythmPanel rhythmPanel = new RhythmPanel(player);
+        rhythmPanel = new RhythmPanel(player);
 
         setLayout(new BorderLayout());
 
         //add(headerPanel, BorderLayout.NORTH);
-        //add(controlPanel, BorderLayout.WEST);
+        add(controlPanel, BorderLayout.WEST);
         //add(mixerPanel, BorderLayout.CENTER);
         add(rhythmPanel, BorderLayout.SOUTH);
     }
@@ -46,10 +48,11 @@ public class DrumMachineUI extends JFrame {
         @Override
         public void run() {
             while (true) {
-                System.out.println("Looping");
-                player.play();
+//                System.out.println(player.getBeat());
+                rhythmPanel.setInstrument(controlPanel.getCurrentInstrument());
+                rhythmPanel.play();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep((60000 / controlPanel.getTempo())/16);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

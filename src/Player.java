@@ -44,6 +44,10 @@ public class Player {
 
     }
 
+    public int getBeat(){
+        return beat_count;
+    }
+
     public void play() {
 
         if (beat_count == 15)

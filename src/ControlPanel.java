@@ -10,27 +10,33 @@ import java.awt.event.ActionListener;
  * Created by brian on 5/29/2017.
  */
 
-public class ControlPanel extends JPanel{
+public class ControlPanel extends JPanel {
 
     private int currentInstrument;
     private int tempo;         //in BPM
     private int timeSignature;  //beats per measure and each beat is a quarter note
     private boolean isPlaying = false;
+    private JLabel tempoLabel = new JLabel();
 
-    public ControlPanel(){
+
+    public ControlPanel() {
         tempo = 120;
         timeSignature = 4;
 
         setLayout(new GridLayout(4, 2));
 
-        JSlider tempoSlider = new JSlider(40,300, tempo);
+        JSlider tempoSlider = new JSlider(40, 300, tempo);
+        tempoSlider.setMajorTickSpacing(5);
+        tempoSlider.setSnapToTicks(true);
         tempoSlider.addChangeListener(new TempoChangeListener());
 
         add(tempoSlider);
-        add(new JLabel("Tempo"));
+        tempoLabel.setText("Tempo: " + tempoSlider.getValue());
+        add(tempoLabel);
 
-        JSlider instrumentSlider = new JSlider(0,10, 0);
+        JSlider instrumentSlider = new JSlider(0, 10, 0);
         instrumentSlider.setMajorTickSpacing(1);
+        instrumentSlider.setSnapToTicks(true);
         instrumentSlider.addChangeListener(new InstrumentChangeListener());
 
         add(instrumentSlider);
@@ -48,7 +54,7 @@ public class ControlPanel extends JPanel{
         time.add(time4);
         time.add(time3);
 
-        JPanel timePanel = new JPanel(new GridLayout(2,1));
+        JPanel timePanel = new JPanel(new GridLayout(2, 1));
         timePanel.add(time3);
         timePanel.add(time4);
 
@@ -62,30 +68,32 @@ public class ControlPanel extends JPanel{
         startButton.addChangeListener(new StartChangeListener());
     }
 
-    public int getCurrentInstrument(){
+    public int getCurrentInstrument() {
         return currentInstrument;
     }
 
-    public int getTempo(){
+    public int getTempo() {
         return tempo;
     }
 
-    public int getTimeSignature(){
+    public int getTimeSignature() {
         return timeSignature;
     }
 
-    public class TempoChangeListener implements ChangeListener{
+    public class TempoChangeListener implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent e) {
-            JSlider root = (JSlider)e.getSource();
-            if(!root.getValueIsAdjusting()){
-                tempo = (int)root.getValue();
+            JSlider root = (JSlider) e.getSource();
+            if (!root.getValueIsAdjusting()) {
+                tempo = (int) root.getValue();
+                tempoLabel.setText("Tempo: " + root.getValue());
+
             }
         }
     }
 
-    public class TimeActionListener implements ActionListener{
+    public class TimeActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -93,7 +101,7 @@ public class ControlPanel extends JPanel{
         }
     }
 
-    public class StartChangeListener implements ChangeListener{
+    public class StartChangeListener implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent e) {
@@ -101,13 +109,14 @@ public class ControlPanel extends JPanel{
         }
     }
 
-    public class InstrumentChangeListener implements ChangeListener{
+    public class InstrumentChangeListener implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent e) {
-            JSlider root = (JSlider)e.getSource();
-            if(!root.getValueIsAdjusting()){
-                currentInstrument = (int)root.getValue();
+            JSlider root = (JSlider) e.getSource();
+            if (!root.getValueIsAdjusting()) {
+                System.out.println("hello");
+                currentInstrument = (int) root.getValue();
             }
         }
     }
