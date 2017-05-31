@@ -17,7 +17,7 @@ public class ControlPanel extends JPanel {
     private int timeSignature;  //beats per measure and each beat is a quarter note
     private boolean isPlaying = false;
     private JLabel tempoLabel = new JLabel();
-
+    private boolean[][] beatArray = new boolean[16][DrumSounds.NUM_SOUNDS];
 
     public ControlPanel() {
         tempo = 120;
@@ -116,6 +116,7 @@ public class ControlPanel extends JPanel {
             JSlider root = (JSlider) e.getSource();
             if (!root.getValueIsAdjusting()) {
                 System.out.println("hello");
+//                beatArray[currentInstrument] = player.addLoop();
                 currentInstrument = (int) root.getValue();
             }
         }

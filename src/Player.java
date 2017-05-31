@@ -14,7 +14,7 @@ public class Player {
     private static int beat_count = 0;
 
 
-    public Player() throws Exception{
+    public Player() throws Exception {
 
         //initialize instrument grid
         for (int i = 0; i < audioClips.length; i++) {
@@ -44,7 +44,7 @@ public class Player {
 
     }
 
-    public int getBeat(){
+    public int getBeat() {
         return beat_count;
     }
 

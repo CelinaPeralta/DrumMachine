@@ -1,7 +1,5 @@
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
-import java.lang.management.ThreadMXBean;
 
 /**
  * Created by brian on 5/29/2017.
@@ -48,7 +46,6 @@ public class DrumMachineUI extends JFrame {
         @Override
         public void run() {
             while (true) {
-//                System.out.println(player.getBeat());
                 rhythmPanel.setInstrument(controlPanel.getCurrentInstrument());
                 rhythmPanel.play();
                 try {
