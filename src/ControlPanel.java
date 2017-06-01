@@ -36,7 +36,7 @@ public class ControlPanel extends JPanel {
         tempoLabel.setText("Tempo: " + tempoSlider.getValue());
         add(tempoLabel);
 
-        JSlider instrumentSlider = new JSlider(0, 10, 0);
+        JSlider instrumentSlider = new JSlider(0, DrumSounds.NUM_SOUNDS, 0);
         instrumentSlider.setMajorTickSpacing(1);
         instrumentSlider.setSnapToTicks(true);
         instrumentSlider.addChangeListener(new InstrumentChangeListener());
@@ -117,7 +117,9 @@ public class ControlPanel extends JPanel {
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
             if (!root.getValueIsAdjusting()) {
+                player.updateBeats(beatArray[currentInstrument]);
                 currentInstrument = root.getValue();
+                player.setInstrument(currentInstrument);
                 player.updateBeats(beatArray[currentInstrument]);
             }
         }

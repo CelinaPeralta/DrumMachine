@@ -57,7 +57,7 @@ public class DrumMachineUI extends JFrame {
                 rhythmPanel.play();
                 System.out.println("loop");
                 try {
-                    Thread.sleep((60000 / controlPanel.getTempo()) / 16);
+                    Thread.sleep((60000 / controlPanel.getTempo()) / 8);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

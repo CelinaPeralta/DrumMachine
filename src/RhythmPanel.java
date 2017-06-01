@@ -30,7 +30,7 @@ public class RhythmPanel extends JPanel {
         for (int x = 0; x < jCheckBoxes.length; x++) {
             JCheckBox beat = new JCheckBox();
             beat.addActionListener(new BeatButtonListener(x));
-
+            jCheckBoxes[x] = beat;
             this.add(beat);
         }
     }
