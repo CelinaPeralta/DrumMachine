@@ -82,6 +82,10 @@ public class ControlPanel extends JPanel {
         return timeSignature;
     }
 
+    public boolean[][] getbeatArray(){
+        return  beatArray;
+    }
+
     public class TempoChangeListener implements ChangeListener {
 
         @Override
@@ -119,10 +123,9 @@ public class ControlPanel extends JPanel {
             if (!root.getValueIsAdjusting()) {
                 player.updateBeats(beatArray[currentInstrument]);
                 currentInstrument = root.getValue();
-                player.setInstrument(currentInstrument);
+                player.setInstrument(currentInstrument, beatArray[currentInstrument]);
                 player.updateBeats(beatArray[currentInstrument]);
             }
         }
     }
 }
-

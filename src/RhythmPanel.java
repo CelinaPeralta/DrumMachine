@@ -45,9 +45,9 @@ public class RhythmPanel extends JPanel {
         return player;
     }
 
-    public void setInstrument(int instrument) {
+    public void setInstrument(int instrument, boolean[] newBeats) {
         this.instrument = instrument;
-        beats = new boolean[16];
+        beats = newBeats;
     }
 
     public boolean[] getBeats() {

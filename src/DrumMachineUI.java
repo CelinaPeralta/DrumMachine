@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by brian on 5/29/2017.
@@ -11,8 +9,6 @@ public class DrumMachineUI extends JFrame {
     public static Player player;
     public static RhythmPanel rhythmPanel;
     public static ControlPanel controlPanel;
-    public static JButton start;
-    public static Thread looper;
 
     public DrumMachineUI() throws Exception {
 
@@ -33,20 +29,6 @@ public class DrumMachineUI extends JFrame {
         add(controlPanel, BorderLayout.WEST);
         //add(mixerPanel, BorderLayout.CENTER);
         add(rhythmPanel, BorderLayout.SOUTH);
-        start = new JButton("Start/Stop");
-        start.setEnabled(true);
-        add(start);
-
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(looper.isAlive())
-                    looper.stop();
-                else
-                    looper.start();
-
-            }
-        });
     }
 
     public static void main(String[] args) throws Exception {
@@ -58,20 +40,17 @@ public class DrumMachineUI extends JFrame {
         frame.setVisible(true);
 
         LoopThread loop = new LoopThread();
-        looper = new Thread(loop);
-        looper.setDaemon(true);
+        loop.setDaemon(true);
+
+        UpdateThread updateThread = new UpdateThread();
+        updateThread.setDaemon(true);
 
 //        updateThread.run();
-        if (start.isSelected()) {
-            if (looper.isAlive())
-                looper.interrupt();
-            else
-                looper.start();
-        }
+        loop.run();
 
     }
 
-    public static class LoopThread implements Runnable {
+    public static class LoopThread extends Thread {
         @Override
         public void run() {
             while (true) {
@@ -87,5 +66,19 @@ public class DrumMachineUI extends JFrame {
         }
     }
 
+    public static class UpdateThread extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                rhythmPanel.setInstrument(controlPanel.getCurrentInstrument(), controlPanel.getbeatArray()[controlPanel.getCurrentInstrument()]);
+                System.out.println("update");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+            }
+        }
+    }
 }
