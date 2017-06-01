@@ -18,7 +18,7 @@ public class ControlPanel extends JPanel {
     private boolean isPlaying = false;
     private JLabel tempoLabel = new JLabel();
     private RhythmPanel player;
-    private boolean[][] beatArray = new boolean[16][DrumSounds.NUM_SOUNDS];
+    private boolean[][] beatArray = new boolean[DrumSounds.NUM_SOUNDS][16];
 
     public ControlPanel(RhythmPanel player) {
         this.player = player;
