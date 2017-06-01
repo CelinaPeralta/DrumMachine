@@ -33,41 +33,12 @@ public class RhythmPanel extends JPanel {
 
             this.add(beat);
         }
-        /*
-        JCheckBox beat2 = new JCheckBox();
-        JCheckBox beat3 = new JCheckBox();
-        JCheckBox beat4 = new JCheckBox();
-        JCheckBox beat5 = new JCheckBox();
-        JCheckBox beat6 = new JCheckBox();
-        JCheckBox beat7 = new JCheckBox();
-        JCheckBox beat8 = new JCheckBox();
-        JCheckBox beat9 = new JCheckBox();
-        JCheckBox beat10 = new JCheckBox();
-        JCheckBox beat11 = new JCheckBox();
-        JCheckBox beat12 = new JCheckBox();
-        JCheckBox beat13 = new JCheckBox();
-        JCheckBox beat14 = new JCheckBox();
-        JCheckBox beat15 = new JCheckBox();
-        JCheckBox beat16 = new JCheckBox();
+    }
 
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        beat1.addActionListener(new BeatButtonListener(1));
-        */
-
+    public void updateBeats(boolean[] beats) {
+        for (int i = 0; i < jCheckBoxes.length; i++) {
+            jCheckBoxes[i].setSelected(beats[i]);
+        }
     }
 
     public Player getPlayer() {
@@ -97,7 +68,7 @@ public class RhythmPanel extends JPanel {
         }
     }
 
-    public void play(){
+    public void play() {
         player.play();
     }
 }

@@ -18,9 +18,10 @@ public class DrumMachineUI extends JFrame {
         player = new Player();
 
         //HeaderPanel headerPanel = new HeaderPanel();
-        controlPanel = new ControlPanel();
+
         //MixerPanel mixerPanel = new MixerPanel();
         rhythmPanel = new RhythmPanel(player);
+        controlPanel = new ControlPanel(rhythmPanel);
 
         setLayout(new BorderLayout());
 
@@ -31,6 +32,7 @@ public class DrumMachineUI extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
+
         DrumMachineUI frame = new DrumMachineUI();
 
         frame.setLocationRelativeTo(null);
@@ -39,20 +41,43 @@ public class DrumMachineUI extends JFrame {
 
         LoopThread loop = new LoopThread();
         loop.setDaemon(true);
+
+        UpdateThread updateThread = new UpdateThread();
+        updateThread.setDaemon(true);
+
+//        updateThread.run();
         loop.run();
+
     }
 
     public static class LoopThread extends Thread {
         @Override
         public void run() {
             while (true) {
-                rhythmPanel.setInstrument(controlPanel.getCurrentInstrument());
                 rhythmPanel.play();
+                System.out.println("loop");
                 try {
-                    Thread.sleep((60000 / controlPanel.getTempo())/16);
+                    Thread.sleep((60000 / controlPanel.getTempo()) / 16);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+            }
+        }
+    }
+
+    public static class UpdateThread extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                rhythmPanel.setInstrument(controlPanel.getCurrentInstrument());
+                System.out.println("update");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
     }
