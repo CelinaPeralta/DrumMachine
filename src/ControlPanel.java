@@ -14,8 +14,9 @@ public class ControlPanel extends JPanel {
 
     private int currentInstrument;
     private int tempo;         //in BPM
-    private int timeSignature;  //beats per measure and each beat is a quarter note
+    private boolean timeSignature4;  //beats per measure and each beat is a quarter note
     private boolean isPlaying = false;
+    private boolean isChanged = false;
     private JLabel tempoLabel = new JLabel();
     private RhythmPanel player;
     private boolean[][] beatArray = new boolean[DrumSounds.NUM_SOUNDS][16];
@@ -23,12 +24,13 @@ public class ControlPanel extends JPanel {
     public ControlPanel(RhythmPanel player) {
         this.player = player;
         tempo = 120;
-        timeSignature = 4;
+        timeSignature4 = true;
 
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(5, 2));
 
         JSlider tempoSlider = new JSlider(40, 300, tempo);
         tempoSlider.setMajorTickSpacing(5);
+        tempoSlider.setPaintTicks(true);
         tempoSlider.setSnapToTicks(true);
         tempoSlider.addChangeListener(new TempoChangeListener());
 
@@ -38,6 +40,7 @@ public class ControlPanel extends JPanel {
 
         JSlider instrumentSlider = new JSlider(0, DrumSounds.NUM_SOUNDS, 0);
         instrumentSlider.setMajorTickSpacing(1);
+        instrumentSlider.setPaintTicks(true);
         instrumentSlider.setSnapToTicks(true);
         instrumentSlider.addChangeListener(new InstrumentChangeListener());
 
@@ -68,6 +71,14 @@ public class ControlPanel extends JPanel {
         startButton.setActionCommand("start");
 
         startButton.addChangeListener(new StartChangeListener());
+
+        add(startButton);
+        add(new JLabel());
+
+        JButton resetButton = new JButton(("Reset"));
+        resetButton.addChangeListener(new ResetChangeListener());
+
+        add(resetButton);
     }
 
     public int getCurrentInstrument() {
@@ -78,12 +89,20 @@ public class ControlPanel extends JPanel {
         return tempo;
     }
 
-    public int getTimeSignature() {
-        return timeSignature;
+    public boolean getTimeSignature() {
+        return timeSignature4;
     }
 
-    public boolean[][] getbeatArray(){
+    public boolean[][] getBeatArray(){
         return  beatArray;
+    }
+
+    public boolean isChanged(){
+        return isChanged;
+    }
+
+    public void setChangedFalse(){
+        isChanged = false;
     }
 
     public class TempoChangeListener implements ChangeListener {
@@ -103,7 +122,8 @@ public class ControlPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            tempo = Integer.parseInt(e.getActionCommand());
+            timeSignature4 = !timeSignature4;
+            System.out.println("Test1");
         }
     }
 
@@ -126,6 +146,14 @@ public class ControlPanel extends JPanel {
                 player.setInstrument(currentInstrument, beatArray[currentInstrument]);
                 player.updateBeats(beatArray[currentInstrument]);
             }
+        }
+    }
+
+    public class ResetChangeListener implements ChangeListener{
+
+        @Override
+        public void stateChanged(ChangeEvent e) {
+
         }
     }
 }

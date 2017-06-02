@@ -19,7 +19,7 @@ public class RhythmPanel extends JPanel {
     public RhythmPanel(Player player) {
         super(new BorderLayout());
 
-        instrument = 1;
+        instrument = 0;
 
         this.player = player;
 

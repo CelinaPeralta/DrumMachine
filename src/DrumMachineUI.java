@@ -17,17 +17,20 @@ public class DrumMachineUI extends JFrame {
 
         player = new Player();
 
-        //HeaderPanel headerPanel = new HeaderPanel();
-
-        //MixerPanel mixerPanel = new MixerPanel();
+        HeaderPanel headerPanel = new HeaderPanel();
+        MixerPanel mixerPanel = new MixerPanel();
         rhythmPanel = new RhythmPanel(player);
         controlPanel = new ControlPanel(rhythmPanel);
 
+        headerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        mixerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        rhythmPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        controlPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setLayout(new BorderLayout());
 
-        //add(headerPanel, BorderLayout.NORTH);
+        add(headerPanel, BorderLayout.NORTH);
         add(controlPanel, BorderLayout.WEST);
-        //add(mixerPanel, BorderLayout.CENTER);
+        add(mixerPanel, BorderLayout.CENTER);
         add(rhythmPanel, BorderLayout.SOUTH);
     }
 
@@ -45,7 +48,7 @@ public class DrumMachineUI extends JFrame {
         UpdateThread updateThread = new UpdateThread();
         updateThread.setDaemon(true);
 
-//        updateThread.run();
+        //updateThread.run();
         loop.run();
 
     }
@@ -55,13 +58,12 @@ public class DrumMachineUI extends JFrame {
         public void run() {
             while (true) {
                 rhythmPanel.play();
-                System.out.println("loop");
+                player.setTimeSignature4(controlPanel.getTimeSignature());
                 try {
-                    Thread.sleep((60000 / controlPanel.getTempo()) / 8);
+                    Thread.sleep((60000 / controlPanel.getTempo()) / 4);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
@@ -70,14 +72,15 @@ public class DrumMachineUI extends JFrame {
         @Override
         public void run() {
             while (true) {
-                rhythmPanel.setInstrument(controlPanel.getCurrentInstrument(), controlPanel.getbeatArray()[controlPanel.getCurrentInstrument()]);
-                System.out.println("update");
+                //Make boolean methods for isChanged for the panels
+                rhythmPanel.setInstrument(controlPanel.getCurrentInstrument(), controlPanel.getBeatArray()[controlPanel.getCurrentInstrument()]);
+                player.setTimeSignature4(controlPanel.getTimeSignature());
+
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }

@@ -12,6 +12,8 @@ public class Player {
     private Sound[][] audioClips = new Sound[16][DrumSounds.NUM_SOUNDS];
     private boolean[][] beats = new boolean[16][DrumSounds.NUM_SOUNDS];
     private static int beat_count = 0;
+    private boolean timeSignature4 = true;
+    private short totalBeats = 15;
 
 
     public Player() throws Exception {
@@ -48,9 +50,18 @@ public class Player {
         return beat_count;
     }
 
+    public void setTimeSignature4(boolean timeSignature){
+        timeSignature4 = timeSignature;
+        if(timeSignature4){
+            totalBeats = 15;
+        }
+        else if(!timeSignature4){
+            totalBeats = 11;
+        }
+    }
     public void play() {
 
-        if (beat_count == 15)
+        if (beat_count >= totalBeats)
             beat_count = 0;
         else
             beat_count++;
