@@ -39,22 +39,25 @@ public class Player {
     }
 
     public void clearLoop() {
-        beats = new boolean[16][DrumSounds.NUM_SOUNDS];
+        for (int y = 0; y < beats.length; y++) {
+            for (int x = 0; x < beats[y].length; x++)
+                beats[y][x] = false;
+        }
     }
 
     public int getBeat() {
         return beat_count;
     }
 
-    public void setTimeSignature4(boolean timeSignature){
+    public void setTimeSignature4(boolean timeSignature) {
         timeSignature4 = timeSignature;
-        if(timeSignature4){
+        if (timeSignature4) {
             totalBeats = 15;
-        }
-        else if(!timeSignature4){
+        } else if (!timeSignature4) {
             totalBeats = 11;
         }
     }
+
     public void play() {
 
         if (beat_count >= totalBeats)

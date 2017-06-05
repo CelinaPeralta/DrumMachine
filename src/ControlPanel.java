@@ -17,9 +17,15 @@ public class ControlPanel extends JPanel {
     private boolean timeSignature4;  //beats per measure and each beat is a quarter note
     private volatile boolean isPlaying = false;
     private boolean isChanged = false;
-    private JLabel tempoLabel = new JLabel();
-    private RhythmPanel player;
     private boolean[][] beatArray = new boolean[DrumSounds.NUM_SOUNDS][16];
+
+    private JLabel instrumentLabel = new JLabel();
+    private JLabel tempoLabel = new JLabel();
+    private JSlider tempoSlider;
+    private JSlider instrumentSlider;
+    private JToggleButton startButton;
+    private RhythmPanel player;
+
 
     public ControlPanel(RhythmPanel player) {
         this.player = player;
@@ -28,7 +34,7 @@ public class ControlPanel extends JPanel {
 
         setLayout(new GridLayout(5, 2));
 
-        JSlider tempoSlider = new JSlider(40, 300, tempo);
+        tempoSlider = new JSlider(40, 300, tempo);
         tempoSlider.setMajorTickSpacing(5);
         tempoSlider.setPaintTicks(true);
         tempoSlider.setSnapToTicks(true);
@@ -38,14 +44,15 @@ public class ControlPanel extends JPanel {
         tempoLabel.setText("Tempo: " + tempoSlider.getValue());
         add(tempoLabel);
 
-        JSlider instrumentSlider = new JSlider(0, DrumSounds.NUM_SOUNDS, 0);
+        instrumentSlider = new JSlider(0, DrumSounds.NUM_SOUNDS - 1, 0);
         instrumentSlider.setMajorTickSpacing(1);
         instrumentSlider.setPaintTicks(true);
         instrumentSlider.setSnapToTicks(true);
         instrumentSlider.addChangeListener(new InstrumentChangeListener());
 
         add(instrumentSlider);
-        add(new JLabel("Instrument"));
+        add(instrumentLabel);
+        instrumentLabel.setText("Instrument: " + DrumSounds.audioNames[instrumentSlider.getValue()]);
 
         JRadioButton time4 = new JRadioButton("4", true);
         JRadioButton time3 = new JRadioButton("3");
@@ -67,7 +74,7 @@ public class ControlPanel extends JPanel {
         add(new JLabel("Time Signature"));
 
 
-        JToggleButton startButton = new JToggleButton("Start", false);
+        startButton = new JToggleButton("Start", false);
         startButton.setActionCommand("start");
 
         startButton.addActionListener(new StartActionListener());
@@ -76,7 +83,7 @@ public class ControlPanel extends JPanel {
         add(new JLabel());
 
         JButton resetButton = new JButton(("Reset"));
-        resetButton.addChangeListener(new ResetChangeListener());
+        resetButton.addActionListener(new ResetChangeListener());
 
         add(resetButton);
     }
@@ -93,21 +100,22 @@ public class ControlPanel extends JPanel {
         return timeSignature4;
     }
 
-    public boolean[][] getBeatArray(){
-        return  beatArray;
+    public boolean[][] getBeatArray() {
+        return beatArray;
     }
 
-    public boolean isChanged(){
+    public boolean isChanged() {
         return isChanged;
     }
 
-    public boolean isPlaying(){
+    public boolean isPlaying() {
         return isPlaying;
     }
 
-    public void setChangedFalse(){
+    public void setChangedFalse() {
         isChanged = false;
     }
+
 
     public class TempoChangeListener implements ChangeListener {
 
@@ -150,16 +158,25 @@ public class ControlPanel extends JPanel {
                 currentInstrument = root.getValue();
                 player.setInstrument(currentInstrument, beatArray[currentInstrument]);
                 player.updateBeats(beatArray[currentInstrument]);
+                instrumentLabel.setText("Instrument: " + DrumSounds.audioNames[root.getValue()]);
             }
         }
     }
 
-    public class ResetChangeListener implements ChangeListener{
+    public class ResetChangeListener implements ActionListener {
 
         @Override
-        public void stateChanged(ChangeEvent e) {
-            beatArray = new boolean[DrumSounds.NUM_SOUNDS][16];
+        public void actionPerformed(ActionEvent e) {
+            for (int y = 0; y < beatArray.length; y++) {
+                for (boolean b : beatArray[y])
+                    b = false;
+            }
+            instrumentSlider.setValue(0);
+            tempoSlider.setValue(120);
+            isPlaying = false;
+            startButton.setSelected(false);
             player.clearBeats();
+
         }
     }
 }

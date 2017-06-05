@@ -69,9 +69,14 @@ public class RhythmPanel extends JPanel {
     }
 
     public void clearBeats(){
-        beats = new boolean[16];
+        for (int x = 0; x < jCheckBoxes.length; x++) {
+            jCheckBoxes[x].setSelected(false);
+            beats[x] = false;
+        }
         player.clearLoop();
     }
+
+
 
     public void play() {
         player.play();

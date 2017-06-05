@@ -60,7 +60,7 @@ public class DrumMachineUI extends JFrame {
                 player.setTimeSignature4(controlPanel.getTimeSignature());
 
                 if(controlPanel.isPlaying()) {
-//                    System.out.println("Test1");
+                    System.out.println("Test1");
                     rhythmPanel.play();
                     try {
                         Thread.sleep((60000 / controlPanel.getTempo()) / 4);
