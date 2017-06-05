@@ -136,7 +136,7 @@ public class ControlPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             isPlaying = !isPlaying;
-            System.out.println(e);
+            System.out.println(isPlaying);
         }
     }
 

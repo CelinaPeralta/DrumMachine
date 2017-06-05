@@ -58,6 +58,8 @@ public class DrumMachineUI extends JFrame {
         public void run() {
             while (true) {
                 player.setTimeSignature4(controlPanel.getTimeSignature());
+
+                System.out.println(controlPanel.isPlaying());
                 if(controlPanel.isPlaying()) {
                     System.out.println("Test1");
                     rhythmPanel.play();
