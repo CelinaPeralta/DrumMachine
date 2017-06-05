@@ -49,7 +49,7 @@ public class DrumMachineUI extends JFrame {
         updateThread.setDaemon(true);
 
         //updateThread.run();
-        loop.run();
+        loop.start();
 
     }
 
@@ -57,12 +57,15 @@ public class DrumMachineUI extends JFrame {
         @Override
         public void run() {
             while (true) {
-                rhythmPanel.play();
                 player.setTimeSignature4(controlPanel.getTimeSignature());
-                try {
-                    Thread.sleep((60000 / controlPanel.getTempo()) / 4);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                if(controlPanel.isPlaying()) {
+                    System.out.println("Test1");
+                    rhythmPanel.play();
+                    try {
+                        Thread.sleep((60000 / controlPanel.getTempo()) / 4);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

@@ -38,12 +38,8 @@ public class Player {
 
     }
 
-    public void clearLoop(int instrument) {
-
-        for (int i = 0; i < audioClips.length; i++) {
-            beats[i][instrument] = false;
-        }
-
+    public void clearLoop() {
+        beats = new boolean[16][DrumSounds.NUM_SOUNDS];
     }
 
     public int getBeat() {

@@ -68,6 +68,11 @@ public class RhythmPanel extends JPanel {
         }
     }
 
+    public void clearBeats(){
+        beats = new boolean[16];
+        player.clearLoop();
+    }
+
     public void play() {
         player.play();
     }

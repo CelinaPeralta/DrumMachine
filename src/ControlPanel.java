@@ -70,7 +70,7 @@ public class ControlPanel extends JPanel {
         JToggleButton startButton = new JToggleButton("Start", false);
         startButton.setActionCommand("start");
 
-        startButton.addChangeListener(new StartChangeListener());
+        startButton.addActionListener(new StartActionListener());
 
         add(startButton);
         add(new JLabel());
@@ -101,6 +101,10 @@ public class ControlPanel extends JPanel {
         return isChanged;
     }
 
+    public boolean isPlaying(){
+        return isPlaying;
+    }
+
     public void setChangedFalse(){
         isChanged = false;
     }
@@ -123,15 +127,16 @@ public class ControlPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             timeSignature4 = !timeSignature4;
-            System.out.println("Test1");
+
         }
     }
 
-    public class StartChangeListener implements ChangeListener {
+    public class StartActionListener implements ActionListener {
 
         @Override
-        public void stateChanged(ChangeEvent e) {
-            isPlaying = true;
+        public void actionPerformed(ActionEvent e) {
+            isPlaying = !isPlaying;
+            System.out.println(e);
         }
     }
 
@@ -153,7 +158,8 @@ public class ControlPanel extends JPanel {
 
         @Override
         public void stateChanged(ChangeEvent e) {
-
+            beatArray = new boolean[DrumSounds.NUM_SOUNDS][16];
+            player.clearBeats();
         }
     }
 }
