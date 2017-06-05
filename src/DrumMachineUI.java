@@ -55,11 +55,10 @@ public class DrumMachineUI extends JFrame {
 
     public static class LoopThread extends Thread {
         @Override
-        public void run() {
+        public synchronized void run() {
             while (true) {
                 player.setTimeSignature4(controlPanel.getTimeSignature());
 
-                System.out.println(controlPanel.isPlaying());
                 if(controlPanel.isPlaying()) {
                     System.out.println("Test1");
                     rhythmPanel.play();

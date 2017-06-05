@@ -15,7 +15,7 @@ public class ControlPanel extends JPanel {
     private int currentInstrument;
     private int tempo;         //in BPM
     private boolean timeSignature4;  //beats per measure and each beat is a quarter note
-    private boolean isPlaying = false;
+    private volatile boolean isPlaying = false;
     private boolean isChanged = false;
     private JLabel tempoLabel = new JLabel();
     private RhythmPanel player;
@@ -134,7 +134,7 @@ public class ControlPanel extends JPanel {
     public class StartActionListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public synchronized void actionPerformed(ActionEvent e) {
             isPlaying = !isPlaying;
             System.out.println(isPlaying);
         }
