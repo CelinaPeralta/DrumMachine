@@ -79,11 +79,14 @@ public class ControlPanel extends JPanel {
 
         startButton.addActionListener(new StartActionListener());
 
+        startButton.setPreferredSize(new Dimension(10, 40));
+
         add(startButton);
         add(new JLabel());
 
         JButton resetButton = new JButton(("Reset"));
         resetButton.addActionListener(new ResetChangeListener());
+        resetButton.setPreferredSize(new Dimension(10, 40));
 
         add(resetButton);
     }
