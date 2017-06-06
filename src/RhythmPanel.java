@@ -1,6 +1,9 @@
+import javafx.scene.layout.Border;
+
 import javax.naming.ldap.Control;
 import javax.sound.midi.Instrument;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +33,6 @@ public class RhythmPanel extends JPanel {
 
         for (int x = 0; x < jCheckBoxes.length; x++) {
             JToggleButton beat = new JToggleButton();
-            beat.setSize(30, 60);
             beat.addActionListener(new BeatButtonListener(x));
             jCheckBoxes[x] = beat;
             this.add(beat);
@@ -81,12 +83,19 @@ public class RhythmPanel extends JPanel {
 
 
     public void play() {
+
         player.play();
+
         int b = player.getBeat();
-        jCheckBoxes[b].setText(b + "");
-        if (b == 0)
+
+        jCheckBoxes[b].setText("O");
+
+        if (b == 0) {
             jCheckBoxes[jCheckBoxes.length - 1].setText("");
-        if (b > 0)
+        }
+        if (b > 0) {
             jCheckBoxes[b - 1].setText("");
+        }
+
     }
 }
