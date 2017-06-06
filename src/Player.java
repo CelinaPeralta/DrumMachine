@@ -38,7 +38,7 @@ public class Player {
 
     }
 
-    public void clearLoop() {
+    public synchronized void clearLoop() {
         for (int y = 0; y < beats.length; y++) {
             for (int x = 0; x < beats[y].length; x++)
                 beats[y][x] = false;

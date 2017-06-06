@@ -32,6 +32,10 @@ public class ControlPanel extends JPanel {
         tempo = 120;
         timeSignature4 = true;
 
+        currentInstrument = 0;
+        player.setInstrument(currentInstrument, beatArray[currentInstrument]);
+        //player.updateBeats(beatArray[currentInstrument]);
+
         setLayout(new GridLayout(5, 2));
 
         tempoSlider = new JSlider(40, 300, tempo);
@@ -169,12 +173,13 @@ public class ControlPanel extends JPanel {
     public class ResetChangeListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            for (int y = 0; y < beatArray.length; y++) {
-                for (boolean b : beatArray[y])
-                    b = false;
-            }
+        public synchronized void actionPerformed(ActionEvent e) {
             instrumentSlider.setValue(0);
+            for (int y = 0; y < beatArray.length; y++) {
+                for (int x = 0; x < beatArray[y].length; x++)
+                    beatArray[y][x] = false;
+            }
+
             tempoSlider.setValue(120);
             isPlaying = false;
             startButton.setSelected(false);
