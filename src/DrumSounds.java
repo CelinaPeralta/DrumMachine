@@ -32,7 +32,10 @@ public class DrumSounds {
         this.AC = new Sound("Kick1.wav");
         this.BD = new Sound("Kick1.wav");
         this.SD = new Sound("Snare1.wav");
-        this.LC = new Sound("Kick1.wav");
+        Sound newSound = new Sound("Kick1.wav");
+        //newSound.changeReverse();
+        this.LC = newSound;
+        /*
         this.LT = new Sound("Kick1.wav");
         this.MC = new Sound("Kick1.wav");
         this.MT = new Sound("Kick1.wav");
@@ -46,7 +49,7 @@ public class DrumSounds {
         this.CY = new Sound("Kick1.wav");
         this.OH = new Sound("HiHat1.wav");
         this.CH = new Sound("Kick1.wav");
-
+*/
         audioClips = new Sound[]{AC, BD, SD, LC, LT, MC, MT, HC, HT, CL, RS, MA, CP, CB, CY, OH, CH};
 
     }

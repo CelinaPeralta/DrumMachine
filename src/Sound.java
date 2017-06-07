@@ -1,4 +1,5 @@
 import javax.sound.sampled.*;
+import javax.xml.transform.Source;
 import java.io.File;
 import java.io.IOException;
 
@@ -8,7 +9,7 @@ import java.io.IOException;
 /*
 public class Sound {
 
-    private TargetDataLine audio;
+    private DataLine audio;
     private File file;
 
     public Sound(String fileName) throws Exception {
@@ -17,33 +18,50 @@ public class Sound {
         if (file.exists()) {
             AudioInputStream sound = AudioSystem.getAudioInputStream(file);
             // load the sound into memory (a Clip)
-            audio = AudioSystem.getTargetDataLine(sound.getFormat());
+            SourceDataLine srcDataLine = AudioSystem.getSourceDataLine(sound.getFormat());
+            int availableBytes = sound.available();
+            byte[] b = new byte[availableBytes];
+            sound.read(b);
+            srcDataLine.write(b, 0, availableBytes);
+            //interface SourceDataLine supporting format PCM_SIGNED 44100.0 Hz, 16 bit, stereo, 4 bytes/frame, little-endian
+            srcDataLine.open(srcDataLine.getFormat());
+            audio = srcDataLine;
         }
     }
 
     public void play(){
+        System.out.println(audio);
         audio.start();
     }
 
-    public void stop(){
-        audio.stop();
-    }
-
-    public void change(){
+    public void changeReverse(){
         try {
             AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-            File newAudio = new File(File.createNewFile());
 
-            AudioSystem.write(sound, AudioFileFormat.Type.WAVE, newAudio);
-                    SourceDataLine srcDataLine = new SourceDataLine()
+            byte[] byteArray = new byte[sound.available()];
+            int counter = sound.available();
+
+            while(sound.available() >0){
+                byteArray[counter] = (byte)sound.read();
+                counter--;
+            }
+
+            SourceDataLine sourceDataLine = AudioSystem.getSourceDataLine(sound.getFormat());
+            sourceDataLine.write(byteArray, 0, byteArray.length);
+            sourceDataLine.open(sourceDataLine.getFormat());
+
+            audio = sourceDataLine;
+
+
+
         }
         catch(Exception e){
 
         }
     }
 }
-*/
 
+*/
 public class Sound {
 
     private Clip clip;
@@ -73,5 +91,4 @@ public class Sound {
     public void stop(){
         clip.stop();
     }
-
 }

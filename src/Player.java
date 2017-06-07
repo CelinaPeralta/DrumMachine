@@ -24,7 +24,6 @@ public class Player {
                 audioClips[i][j] = new Sound(DrumSounds.audioNames[j]);
             }
         }
-
     }
 
     public void addLoop(int instrument, boolean[] newLoop) {
@@ -35,7 +34,6 @@ public class Player {
         for (int i = 0; i < audioClips.length; i++) {
             beats[i][instrument] = newLoop[i];
         }
-
     }
 
     public synchronized void clearLoop() {
@@ -66,8 +64,10 @@ public class Player {
             beat_count++;
 
         for (int j = 0; j < audioClips[beat_count].length; j++) {
-            if (beats[beat_count][j])
+            if (beats[beat_count][j]) {
                 audioClips[beat_count][j].play();
+                System.out.println("test2");
+            }
         }
 
     }
