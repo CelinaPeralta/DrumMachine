@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98a5b6c2-a5ca-4d50-b076-7c39a3952856" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/DrumSounds.class" afterPath="$PROJECT_DIR$/out/DrumSounds.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/Player.class" afterPath="$PROJECT_DIR$/out/Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/Sound.class" afterPath="$PROJECT_DIR$/out/Sound.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DrumSounds.java" afterPath="$PROJECT_DIR$/src/DrumSounds.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Player.java" afterPath="$PROJECT_DIR$/src/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Sound.java" afterPath="$PROJECT_DIR$/src/Sound.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -511,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496770064846</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed bugs related to the Reset Button and the Instrument slider&#10;">
+      <created>1496800488815</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1496800488815</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
