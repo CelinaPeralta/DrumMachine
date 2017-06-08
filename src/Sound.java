@@ -65,6 +65,7 @@ public class Sound {
 public class Sound {
 
     private Clip clip;
+    private ReverbType[] reverbTypes;
 
     public Sound(String fileName) throws Exception {
 
@@ -75,11 +76,23 @@ public class Sound {
                 // load the sound into memory (a Clip)
                 clip = AudioSystem.getClip();
                 clip.open(sound);
+
             }
         } catch (Exception e){
             e.printStackTrace();
         }
     }
+
+    public void setGain(float gain){ //-80 - 6
+        FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(gain);
+    }
+
+    public void setReverb(float sampleRate){
+        EnumControl reverbControl = (EnumControl)clip.getControl(EnumControl.Type.REVERB);
+        //reverbControl.setValue();
+    }
+
 
     public synchronized void play(){
         clip.setFramePosition(0);  // Must always rewind!
