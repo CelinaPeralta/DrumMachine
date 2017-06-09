@@ -22,17 +22,17 @@ public class MixerPanel extends JPanel {
         add(new JLabel("Snare"));
 
         //Gain Sliders
-        JSlider hhGainSlider = new JSlider(1, -80, 6, 0);
+        JSlider hhGainSlider = new JSlider(1, -40, 6, 0);
         hhGainSlider.setPaintTicks(true);
         hhGainSlider.addChangeListener(new GainChangeListener(0));
         add(hhGainSlider);
 
-        JSlider bdGainSlider = new JSlider(1, -80, 6, 0);
+        JSlider bdGainSlider = new JSlider(1, -40, 6, 0);
         bdGainSlider.setPaintTicks(true);
         bdGainSlider.addChangeListener(new GainChangeListener(1));
         add(bdGainSlider);
 
-        JSlider sdGainSlider = new JSlider(1, -80, 6, 0);
+        JSlider sdGainSlider = new JSlider(1, -40, 6, 0);
         sdGainSlider.setPaintTicks(true);
         sdGainSlider.addChangeListener(new GainChangeListener(2));
         add(sdGainSlider);

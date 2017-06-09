@@ -13,7 +13,7 @@ public class RhythmPanel extends JPanel {
     private Player player;
     private int instrument;
     private boolean[] beats = new boolean[16];
-    private JCheckBox[] jCheckBoxes;
+    private JToggleButton[] jCheckBoxes;
 
 
     public RhythmPanel(Player player) {
@@ -25,10 +25,11 @@ public class RhythmPanel extends JPanel {
 
         setLayout(new GridLayout(1, 16, 5, 3));
 
-        jCheckBoxes = new JCheckBox[16];
+        jCheckBoxes = new JToggleButton[16];
 
         for (int x = 0; x < jCheckBoxes.length; x++) {
-            JCheckBox beat = new JCheckBox();
+            JToggleButton beat = new JToggleButton();
+            beat.setOpaque(true);
             beat.addActionListener(new BeatButtonListener(x));
             jCheckBoxes[x] = beat;
             this.add(beat);
@@ -68,7 +69,7 @@ public class RhythmPanel extends JPanel {
         }
     }
 
-    public void clearBeats(){
+    public void clearBeats() {
         for (int x = 0; x < jCheckBoxes.length; x++) {
             jCheckBoxes[x].setSelected(false);
             beats[x] = false;
@@ -77,8 +78,20 @@ public class RhythmPanel extends JPanel {
     }
 
 
-
     public void play() {
         player.play();
+
+        int b = player.getBeat();
+
+
+        jCheckBoxes[b].setBackground(Color.RED);
+
+        if (b == 0) {
+            jCheckBoxes[player.isTime4() ? 15 : 11].setBackground(null);
+        }
+        if (b > 0) {
+            jCheckBoxes[b - 1].setBackground(null);
+        }
+
     }
 }
