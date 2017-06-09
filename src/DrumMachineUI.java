@@ -7,8 +7,10 @@ import java.awt.*;
 public class DrumMachineUI extends JFrame {
 
     public static Player player;
-    public static RhythmPanel rhythmPanel;
+    public static HeaderPanel headerPanel;
     public static ControlPanel controlPanel;
+    public static MixerPanel mixerPanel;
+    public static RhythmPanel rhythmPanel;
 
     public DrumMachineUI() throws Exception {
 
@@ -17,8 +19,8 @@ public class DrumMachineUI extends JFrame {
 
         player = new Player();
 
-        HeaderPanel headerPanel = new HeaderPanel();
-        MixerPanel mixerPanel = new MixerPanel();
+        headerPanel = new HeaderPanel();
+        mixerPanel = new MixerPanel(player);
         rhythmPanel = new RhythmPanel(player);
         controlPanel = new ControlPanel(rhythmPanel);
 
@@ -45,10 +47,13 @@ public class DrumMachineUI extends JFrame {
         LoopThread loop = new LoopThread();
         loop.setDaemon(true);
 
+        /*
         UpdateThread updateThread = new UpdateThread();
         updateThread.setDaemon(true);
 
-        //updateThread.run();
+        updateThread.run();
+        */
+
         loop.start();
 
     }

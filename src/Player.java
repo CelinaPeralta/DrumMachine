@@ -1,6 +1,4 @@
-import javafx.scene.media.AudioClip;
 
-import java.util.*;
 
 /**
  * Created by celinaperalta on 5/17/17.
@@ -66,9 +64,18 @@ public class Player {
         for (int j = 0; j < audioClips[beat_count].length; j++) {
             if (beats[beat_count][j]) {
                 audioClips[beat_count][j].play();
-                System.out.println("test2");
             }
         }
+    }
 
+    public void setGain(int instrument, float gain){
+        try {
+            for (int j = 0; j < audioClips.length; j++) {
+                Sound newSound = new Sound(DrumSounds.audioNames[instrument]);
+                newSound.setGain(gain);
+                audioClips[j][instrument] = newSound;
+            }
+        }
+        catch (Exception e){}
     }
 }
