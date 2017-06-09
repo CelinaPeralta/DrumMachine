@@ -129,7 +129,7 @@ public class ControlPanel extends JPanel {
         @Override
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
-            if (!root.getValueIsAdjusting()) {
+            if (root.getValueIsAdjusting()) {
                 tempo = (int) root.getValue();
                 tempoLabel.setText("Tempo: " + root.getValue());
 
@@ -160,7 +160,7 @@ public class ControlPanel extends JPanel {
         @Override
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
-            if (!root.getValueIsAdjusting()) {
+            if (root.getValueIsAdjusting()) {
                 player.updateBeats(beatArray[currentInstrument]);
                 currentInstrument = root.getValue();
                 player.setInstrument(currentInstrument, beatArray[currentInstrument]);
@@ -181,6 +181,7 @@ public class ControlPanel extends JPanel {
             }
 
             tempoSlider.setValue(120);
+            timeSignature4 = true;
             isPlaying = false;
             startButton.setSelected(false);
             player.clearBeats();
