@@ -6,6 +6,7 @@ import java.io.IOException;
 /**
  * Created by celinaperalta on 5/24/17.
  */
+<<<<<<< Updated upstream
 /*
 public class Sound {
 
@@ -60,6 +61,8 @@ public class Sound {
         }
     }
 }
+=======
+>>>>>>> Stashed changes
 
 */
 public class Sound {
@@ -84,7 +87,9 @@ public class Sound {
     public synchronized void play(){
         clip.setFramePosition(0);  // Must always rewind!
         clip.start();
+
     }
+
     public void loop(){
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
