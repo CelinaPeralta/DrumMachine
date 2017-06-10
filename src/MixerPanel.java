@@ -31,7 +31,7 @@ public class MixerPanel extends JPanel {
         //Gain Sliders
 
         for(int x = 0; x < DrumSounds.NUM_SOUNDS; x++){
-            JSlider gainSlider = new JSlider(1, -80, 6, -20);
+            JSlider gainSlider = new JSlider(1, -80, 6, -25);
             gainSlider.setPaintTicks(true);
             gainSlider.setMajorTickSpacing(5);
             gainSlider.addChangeListener(new GainChangeListener(x));
@@ -44,7 +44,7 @@ public class MixerPanel extends JPanel {
 
     public void resetMixer(){
         for(int x = 0; x < DrumSounds.NUM_SOUNDS; x++){
-            gainSliders[x].setValue(-20);
+            gainSliders[x].setValue(-25);
         }
     }
 
