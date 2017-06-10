@@ -58,7 +58,7 @@ public class ControlPanel extends JPanel {
         add(instrumentLabel);
 
         String soundName = DrumSounds.audioNames[0];
-        instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length()-4));
+        instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length() - 4));
 
         JRadioButton time4 = new JRadioButton("4", true);
         JRadioButton time3 = new JRadioButton("3");
@@ -167,7 +167,7 @@ public class ControlPanel extends JPanel {
                 rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
                 rhythmPanel.updateBeats(beatArray[currentInstrument]);
                 String soundName = DrumSounds.audioNames[root.getValue()];
-                instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length()-4));
+                instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length() - 4));
             }
         }
     }
@@ -187,6 +187,10 @@ public class ControlPanel extends JPanel {
             startButton.setSelected(false);
             rhythmPanel.clearBeats();
             mixerPanel.resetMixer();
+
+            tempoLabel.setText("Tempo: 120");
+            instrumentLabel.setText("Instrument: " + DrumSounds.audioNames[0].substring(0, DrumSounds.audioNames[0].length() - 4));
+
 
         }
     }
