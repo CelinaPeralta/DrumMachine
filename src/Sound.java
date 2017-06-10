@@ -6,7 +6,6 @@ import java.io.IOException;
 /**
  * Created by celinaperalta on 5/24/17.
  */
-<<<<<<< Updated upstream
 /*
 public class Sound {
 
@@ -68,7 +67,6 @@ public class Sound {
 public class Sound {
 
     private Clip clip;
-    private ReverbType[] reverbTypes;
 
     public Sound(String fileName) throws Exception {
 
@@ -89,11 +87,6 @@ public class Sound {
     public void setGain(float gain){ //-80 - 6
         FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(gain);
-    }
-
-    public void setReverb(float sampleRate){
-        EnumControl reverbControl = (EnumControl)clip.getControl(EnumControl.Type.REVERB);
-        //reverbControl.setValue();
     }
 
 

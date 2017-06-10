@@ -5,52 +5,38 @@
 
 public class DrumSounds {
 
-    public static final int NUM_SOUNDS = 11;
+    public static final int NUM_SOUNDS = 10;
 
-    public Sound AC;
+    public Sound CH;
     public Sound BD;
     public Sound SD;
-    public Sound LC;
-    public Sound LT;
-    public Sound MC;
-    public Sound MT;
-    public Sound HC;
-    public Sound HT;
     public Sound CL;
-    public Sound RS;
-    public Sound MA;
-    public Sound CP;
-    public Sound CB;
-    public Sound CY;
-    public Sound OH;
-    public Sound CH;
+    public Sound HT;
+    public Sound MT;
+    public Sound LT;
+    public Sound RC;
+    public Sound CR;
+    public Sound SN;
+
+
     public static Sound[] audioClips;
-    public static String[] audioNames = new String[]{"HiHat1.wav", "Kick1.wav", "Snare1.wav","Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "Kick1.wav", "HiHat1.wav", "Kick1.wav"};
+    public static String[] audioNames = new String[]{"HiHat.wav", "BassDrum.wav", "Snare.wav","Clap.wav", "HiTom", "MedTom.wav", "LowTom.wav", "RideCymbal.wav", "Crash.wav", "Snap.wav"};
 
 
     public DrumSounds() throws Exception {
-        this.AC = new Sound("Kick1.wav");
-        this.BD = new Sound("Kick1.wav");
-        this.SD = new Sound("Snare1.wav");
-        Sound newSound = new Sound("Kick1.wav");
-        //newSound.changeReverse();
-        this.LC = newSound;
-        /*
-        this.LT = new Sound("Kick1.wav");
-        this.MC = new Sound("Kick1.wav");
-        this.MT = new Sound("Kick1.wav");
-        this.HC = new Sound("Kick1.wav");
-        this.HT = new Sound("Kick1.wav");
-        this.CL = new Sound("Kick1.wav");
-        this.RS = new Sound("Kick1.wav");
-        this.MA = new Sound("Kick1.wav");
-        this.CP = new Sound("Kick1.wav");
-        this.CB = new Sound("Kick1.wav");
-        this.CY = new Sound("Kick1.wav");
-        this.OH = new Sound("HiHat1.wav");
-        this.CH = new Sound("Kick1.wav");
-*/
-        audioClips = new Sound[]{AC, BD, SD, LC, LT, MC, MT, HC, HT, CL, RS, MA, CP, CB, CY, OH, CH};
+
+        this.CH = new Sound(audioNames[0]);
+        this.BD = new Sound(audioNames[1]);
+        this.SD = new Sound(audioNames[2]);
+        this.CL = new Sound(audioNames[3]);
+        this.HT = new Sound(audioNames[4]);
+        this.MT = new Sound(audioNames[5]);
+        this.LT = new Sound(audioNames[6]);
+        this.RC = new Sound(audioNames[7]);
+        this.CR = new Sound(audioNames[8]);
+        this.SN = new Sound(audioNames[9]);
+
+        audioClips = new Sound[]{CH, BD, SD, CL, HT, MT, LT, RC, CR, SN};
 
     }
 }
