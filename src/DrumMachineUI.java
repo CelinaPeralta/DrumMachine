@@ -47,6 +47,7 @@ public class DrumMachineUI extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setResizable(false);
 
         LoopThread loopThread = new LoopThread();
         loopThread.setDaemon(true);

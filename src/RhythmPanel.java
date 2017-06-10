@@ -23,6 +23,7 @@ public class RhythmPanel extends JPanel {
         this.player = player;
 
         setLayout(new GridLayout(1, 16, 5, 30));
+        setPreferredSize(new Dimension(getWidth(), 50));
 
         jCheckBoxes = new JToggleButton[16];
 
