@@ -78,4 +78,8 @@ public class Player {
         }
         catch (Exception e){}
     }
+
+    public boolean isTime4(){
+        return timeSignature4;
+    }
 }

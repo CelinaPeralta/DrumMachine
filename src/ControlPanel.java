@@ -131,7 +131,7 @@ public class ControlPanel extends JPanel {
         @Override
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
-            if (!root.getValueIsAdjusting()) {
+            if (root.getValueIsAdjusting()) {
                 tempo = root.getValue();
                 tempoLabel.setText("Tempo: " + root.getValue());
 
@@ -161,7 +161,7 @@ public class ControlPanel extends JPanel {
         @Override
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
-            if (!root.getValueIsAdjusting()) {
+            if (root.getValueIsAdjusting()) {
                 rhythmPanel.updateBeats(beatArray[currentInstrument]);
                 currentInstrument = root.getValue();
                 rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
