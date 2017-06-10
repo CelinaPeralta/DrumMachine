@@ -1,4 +1,3 @@
-import javax.sound.midi.Instrument;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -24,17 +23,18 @@ public class ControlPanel extends JPanel {
     private JSlider tempoSlider;
     private JSlider instrumentSlider;
     private JToggleButton startButton;
-    private RhythmPanel player;
 
+    private RhythmPanel rhythmPanel = DrumMachineUI.rhythmPanel;
+    private MixerPanel mixerPanel = DrumMachineUI.mixerPanel;
+    private Player player = DrumMachineUI.player;
 
-    public ControlPanel(RhythmPanel player) {
-        this.player = player;
+    public ControlPanel() {
         tempo = 120;
         timeSignature4 = true;
 
         currentInstrument = 0;
-        player.setInstrument(currentInstrument, beatArray[currentInstrument]);
-        //player.updateBeats(beatArray[currentInstrument]);
+        rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
+        //rhythmPanel.updateBeats(beatArray[currentInstrument]);
 
         setLayout(new GridLayout(5, 2));
 
@@ -56,7 +56,9 @@ public class ControlPanel extends JPanel {
 
         add(instrumentSlider);
         add(instrumentLabel);
-        instrumentLabel.setText("Instrument: " + DrumSounds.audioNames[instrumentSlider.getValue()]);
+
+        String soundName = DrumSounds.audioNames[0];
+        instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length()-4));
 
         JRadioButton time4 = new JRadioButton("4", true);
         JRadioButton time3 = new JRadioButton("3");
@@ -130,7 +132,7 @@ public class ControlPanel extends JPanel {
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
             if (!root.getValueIsAdjusting()) {
-                tempo = (int) root.getValue();
+                tempo = root.getValue();
                 tempoLabel.setText("Tempo: " + root.getValue());
 
             }
@@ -142,7 +144,7 @@ public class ControlPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             timeSignature4 = !timeSignature4;
-
+            player.setTimeSignature4(timeSignature4);
         }
     }
 
@@ -151,7 +153,6 @@ public class ControlPanel extends JPanel {
         @Override
         public synchronized void actionPerformed(ActionEvent e) {
             isPlaying = !isPlaying;
-            System.out.println(isPlaying);
         }
     }
 
@@ -161,11 +162,12 @@ public class ControlPanel extends JPanel {
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
             if (!root.getValueIsAdjusting()) {
-                player.updateBeats(beatArray[currentInstrument]);
+                rhythmPanel.updateBeats(beatArray[currentInstrument]);
                 currentInstrument = root.getValue();
-                player.setInstrument(currentInstrument, beatArray[currentInstrument]);
-                player.updateBeats(beatArray[currentInstrument]);
-                instrumentLabel.setText("Instrument: " + DrumSounds.audioNames[root.getValue()]);
+                rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
+                rhythmPanel.updateBeats(beatArray[currentInstrument]);
+                String soundName = DrumSounds.audioNames[root.getValue()];
+                instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length()-4));
             }
         }
     }
@@ -183,7 +185,8 @@ public class ControlPanel extends JPanel {
             tempoSlider.setValue(120);
             isPlaying = false;
             startButton.setSelected(false);
-            player.clearBeats();
+            rhythmPanel.clearBeats();
+            mixerPanel.resetMixer();
 
         }
     }

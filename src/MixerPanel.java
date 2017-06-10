@@ -8,36 +8,44 @@ import java.awt.*;
  */
 public class MixerPanel extends JPanel {
 
-    private Player player;
+    private Player player = DrumMachineUI.player;
+    private JLabel[] instrumentLabels = new JLabel[DrumSounds.NUM_SOUNDS];
+    private JSlider[] gainSliders = new JSlider[DrumSounds.NUM_SOUNDS];
 
-    public MixerPanel(Player player) {
+    public MixerPanel() {
 
-        this.player = player;
+        setLayout(new GridLayout(2, 10));
 
-        setLayout(new GridLayout(2, 3));
+
 
         //Instrument Labels
-        add(new JLabel("Hihat"));
-        add(new JLabel("Bass Drum"));
-        add(new JLabel("Snare"));
+        for(int x = 0; x < DrumSounds.NUM_SOUNDS; x++){
+            String soundName = DrumSounds.audioNames[x];
+            JLabel instrumentLabel = new JLabel(soundName.substring(0, soundName.length()-4));
+            instrumentLabel.setFont(DrumMachineUI.font);
+            instrumentLabels[x] = instrumentLabel;
+
+            add(instrumentLabel);
+        }
 
         //Gain Sliders
-        JSlider hhGainSlider = new JSlider(1, -80, 6, 0);
-        hhGainSlider.setPaintTicks(true);
-        hhGainSlider.addChangeListener(new GainChangeListener(0));
-        add(hhGainSlider);
 
-        JSlider bdGainSlider = new JSlider(1, -80, 6, 0);
-        bdGainSlider.setPaintTicks(true);
-        bdGainSlider.addChangeListener(new GainChangeListener(1));
-        add(bdGainSlider);
+        for(int x = 0; x < DrumSounds.NUM_SOUNDS; x++){
+            JSlider gainSlider = new JSlider(1, -80, 6, -20);
+            gainSlider.setPaintTicks(true);
+            gainSlider.setMajorTickSpacing(5);
+            gainSlider.addChangeListener(new GainChangeListener(x));
+            gainSliders[x] = gainSlider;
 
-        JSlider sdGainSlider = new JSlider(1, -80, 6, 0);
-        sdGainSlider.setPaintTicks(true);
-        sdGainSlider.addChangeListener(new GainChangeListener(2));
-        add(sdGainSlider);
+            add(gainSlider);
+        }
 
-        JSlider hhSampleRateSlider = new JSlider();
+    }
+
+    public void resetMixer(){
+        for(int x = 0; x < DrumSounds.NUM_SOUNDS; x++){
+            gainSliders[x].setValue(-20);
+        }
     }
 
     public class GainChangeListener implements ChangeListener{

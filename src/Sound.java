@@ -1,7 +1,5 @@
 import javax.sound.sampled.*;
-import javax.xml.transform.Source;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by celinaperalta on 5/24/17.
@@ -77,7 +75,6 @@ public class Sound {
                 // load the sound into memory (a Clip)
                 clip = AudioSystem.getClip();
                 clip.open(sound);
-
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -93,7 +90,7 @@ public class Sound {
     public synchronized void play(){
         clip.setFramePosition(0);  // Must always rewind!
         clip.start();
-
+        //clip.loop(20);
     }
 
     public void loop(){

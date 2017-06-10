@@ -10,20 +10,19 @@ import java.awt.event.ActionListener;
  */
 public class RhythmPanel extends JPanel {
 
-    private Player player;
+    private Player player = DrumMachineUI.player;
     private int instrument;
     private boolean[] beats = new boolean[16];
     private JCheckBox[] jCheckBoxes;
 
 
-    public RhythmPanel(Player player) {
-        super(new BorderLayout());
+    public RhythmPanel() {
 
         instrument = 0;
 
         this.player = player;
 
-        setLayout(new GridLayout(1, 16, 5, 3));
+        setLayout(new GridLayout(1, 16, 5, 30));
 
         jCheckBoxes = new JCheckBox[16];
 
@@ -41,17 +40,9 @@ public class RhythmPanel extends JPanel {
         }
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
     public void setInstrument(int instrument, boolean[] newBeats) {
         this.instrument = instrument;
         beats = newBeats;
-    }
-
-    public boolean[] getBeats() {
-        return beats;
     }
 
     public class BeatButtonListener implements ActionListener {

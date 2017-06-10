@@ -20,7 +20,7 @@ public class DrumSounds {
 
 
     public static Sound[] audioClips;
-    public static String[] audioNames = new String[]{"HiHat.wav", "BassDrum.wav", "Snare.wav","Clap.wav", "HiTom", "MedTom.wav", "LowTom.wav", "RideCymbal.wav", "Crash.wav", "Snap.wav"};
+    public static String[] audioNames = new String[]{"HiHat.wav", "BassDrum.wav", "Snare.wav","Clap.wav", "HiTom.wav", "MedTom.wav", "LowTom.wav", "RideCymbal.wav", "Crash.wav", "Snap.wav"};
 
 
     public DrumSounds() throws Exception {

@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
+import static javafx.scene.input.KeyCode.F;
+
 /**
  * Created by brian on 5/29/2017.
  */
@@ -11,6 +13,7 @@ public class DrumMachineUI extends JFrame {
     public static ControlPanel controlPanel;
     public static MixerPanel mixerPanel;
     public static RhythmPanel rhythmPanel;
+    public static Font font = new Font(Font.SANS_SERIF, 3, 12);
 
     public DrumMachineUI() throws Exception {
 
@@ -20,14 +23,15 @@ public class DrumMachineUI extends JFrame {
         player = new Player();
 
         headerPanel = new HeaderPanel();
-        mixerPanel = new MixerPanel(player);
-        rhythmPanel = new RhythmPanel(player);
-        controlPanel = new ControlPanel(rhythmPanel);
+        mixerPanel = new MixerPanel();
+        rhythmPanel = new RhythmPanel();
+        controlPanel = new ControlPanel();
 
         headerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         mixerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         rhythmPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         controlPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
         setLayout(new BorderLayout());
 
         add(headerPanel, BorderLayout.NORTH);
@@ -44,17 +48,9 @@ public class DrumMachineUI extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        LoopThread loop = new LoopThread();
-        loop.setDaemon(true);
-
-        /*
-        UpdateThread updateThread = new UpdateThread();
-        updateThread.setDaemon(true);
-
-        updateThread.run();
-        */
-
-        loop.start();
+        LoopThread loopThread = new LoopThread();
+        loopThread.setDaemon(true);
+        loopThread.start();
 
     }
 
@@ -62,8 +58,6 @@ public class DrumMachineUI extends JFrame {
         @Override
         public synchronized void run() {
             while (true) {
-                player.setTimeSignature4(controlPanel.getTimeSignature());
-
                 if(controlPanel.isPlaying()) {
                     rhythmPanel.play();
                     try {
@@ -71,23 +65,6 @@ public class DrumMachineUI extends JFrame {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                }
-            }
-        }
-    }
-
-    public static class UpdateThread extends Thread {
-        @Override
-        public void run() {
-            while (true) {
-                //Make boolean methods for isChanged for the panels
-                rhythmPanel.setInstrument(controlPanel.getCurrentInstrument(), controlPanel.getBeatArray()[controlPanel.getCurrentInstrument()]);
-                player.setTimeSignature4(controlPanel.getTimeSignature());
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         }
