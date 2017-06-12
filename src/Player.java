@@ -13,13 +13,15 @@ public class Player {
     private boolean timeSignature4 = true;
     private short totalBeats = 15;
 
-
     public Player() throws Exception {
 
         //initialize instrument grid
         for (int i = 0; i < audioClips.length; i++) {
             for (int j = 0; j < audioClips[i].length; j++) {
-                audioClips[i][j] = new Sound(DrumSounds.audioNames[j]);
+                Sound newSound = new Sound(DrumSounds.audioNames[j]);
+                newSound.setGain(-25);
+
+                audioClips[i][j] = newSound;
             }
         }
     }
