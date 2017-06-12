@@ -13,7 +13,7 @@ public class DrumMachineUI extends JFrame {
     public static ControlPanel controlPanel;
     public static MixerPanel mixerPanel;
     public static RhythmPanel rhythmPanel;
-    public static Font font = new Font("Helvetica", 3, 11);
+
 
     public DrumMachineUI() throws Exception {
 

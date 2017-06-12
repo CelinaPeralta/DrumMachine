@@ -18,7 +18,7 @@ public class MixerPanel extends JPanel {
 
     public MixerPanel() {
 
-
+        setPreferredSize( new Dimension(800, getHeight()));
         setLayout(new GridBagLayout());
 
         GridBagConstraints c = new GridBagConstraints();
@@ -32,7 +32,7 @@ public class MixerPanel extends JPanel {
             String soundName = DrumSounds.audioNames[x];
             JLabel instrumentLabel = new JLabel(soundName.substring(0, soundName.length() - 4));
             instrumentLabel.setHorizontalAlignment(JLabel.CENTER);
-            instrumentLabel.setFont(DrumMachineUI.font);
+            instrumentLabel.setFont(Style.mixer_font);
             instrumentLabels[x] = instrumentLabel;
 
             c.gridx = x;
@@ -45,7 +45,7 @@ public class MixerPanel extends JPanel {
         for (int x = 0; x < DrumSounds.NUM_SOUNDS; x++) {
             String soundName = DrumSounds.audioNames[x];
             JToggleButton muteButton = new JToggleButton("Mute", false);
-            muteButton.setFont(DrumMachineUI.font);
+            muteButton.setFont(Style.mixer_font);
             muteButton.addActionListener(new MuteButtonListener(false, x));
             muteButtons[x] = muteButton;
 

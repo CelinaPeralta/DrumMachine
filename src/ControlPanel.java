@@ -36,7 +36,13 @@ public class ControlPanel extends JPanel {
         rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
         //rhythmPanel.updateBeats(beatArray[currentInstrument]);
 
-        setLayout(new GridLayout(5, 2));
+        setLayout(new GridBagLayout());
+        setPreferredSize(new Dimension(350, getHeight()));
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+//        c.gridwidth = getWidth();
+//        c.gridheight = getHeight();
 
         tempoSlider = new JSlider(40, 300, tempo);
         tempoSlider.setMajorTickSpacing(5);
@@ -44,9 +50,16 @@ public class ControlPanel extends JPanel {
         tempoSlider.setSnapToTicks(true);
         tempoSlider.addChangeListener(new TempoChangeListener());
 
-        add(tempoSlider);
+        c.gridx = 0;
+        c.gridy = 0;
+        add(tempoLabel, c);
+
+        tempoLabel.setHorizontalAlignment(0);
         tempoLabel.setText("Tempo: " + tempoSlider.getValue());
-        add(tempoLabel);
+
+        c.gridx = 1;
+        c.gridy = 0;
+        add(tempoSlider, c);
 
         instrumentSlider = new JSlider(0, DrumSounds.NUM_SOUNDS - 1, 0);
         instrumentSlider.setMajorTickSpacing(1);
@@ -54,10 +67,17 @@ public class ControlPanel extends JPanel {
         instrumentSlider.setSnapToTicks(true);
         instrumentSlider.addChangeListener(new InstrumentChangeListener());
 
-        add(instrumentSlider);
-        add(instrumentLabel);
+        c.gridx = 0;
+        c.gridy = 1;
+        add(instrumentLabel, c);
+
+        c.gridx = 1;
+        c.gridy = 1;
+        add(instrumentSlider, c);
+
 
         String soundName = DrumSounds.audioNames[0];
+        instrumentLabel.setHorizontalAlignment(0);
         instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length() - 4));
 
         JRadioButton time4 = new JRadioButton("4", true);
@@ -69,32 +89,44 @@ public class ControlPanel extends JPanel {
         time3.addActionListener(new TimeActionListener());
 
         ButtonGroup time = new ButtonGroup();
+        time4.setHorizontalAlignment(JButton.CENTER);
         time.add(time4);
+        time3.setHorizontalAlignment(JButton.CENTER);
         time.add(time3);
 
         JPanel timePanel = new JPanel(new GridLayout(2, 1));
         timePanel.add(time3);
         timePanel.add(time4);
 
-        add(timePanel);
-        add(new JLabel("Time Signature"));
+        c.gridx = 0;
+        c.gridy = 2;
+
+        JLabel timeSig = new JLabel("Time Signature");
+        timeSig.setHorizontalAlignment(0);
+        add(timeSig, c);
+
+        c.gridx = 1;
+        c.gridy = 3;
+        add(timePanel, c);
 
 
         startButton = new JToggleButton("Start", false);
         startButton.setActionCommand("start");
-
         startButton.addActionListener(new StartActionListener());
 
-        startButton.setPreferredSize(new Dimension(10, 40));
+        c.ipady = 20;
 
-        add(startButton);
-        add(new JLabel());
+        c.gridx = 0;
+        c.gridy = 4;
+        add(startButton, c);
+        add(new JLabel(), c);
 
         JButton resetButton = new JButton(("Reset"));
         resetButton.addActionListener(new ResetChangeListener());
-        resetButton.setPreferredSize(new Dimension(10, 40));
 
-        add(resetButton);
+        c.gridx = 1;
+        c.gridy = 4;
+        add(resetButton, c);
     }
 
     public int getCurrentInstrument() {
