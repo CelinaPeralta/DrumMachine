@@ -2,6 +2,7 @@ import javax.naming.ldap.Control;
 import javax.sound.midi.Instrument;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicToggleButtonUI;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,14 +33,7 @@ public class RhythmPanel extends JPanel {
             beat.addActionListener(new BeatButtonListener(x));
             beat.setOpaque(true);
             beat.setBackground(Color.DARK_GRAY);
-            beat.setMargin(new Insets(5,5,5,5));
-            beat.setUI(new MetalToggleButtonUI() {
-                @Override
-                protected Color getSelectColor() {
-                    return Color.RED;
-                }
-            });
-
+            beat.setUI(new BasicToggleButtonUI());
             jCheckBoxes[x] = beat;
             this.add(beat);
         }
@@ -48,6 +42,11 @@ public class RhythmPanel extends JPanel {
     public void updateBeats(boolean[] beats) {
         for (int i = 0; i < jCheckBoxes.length; i++) {
             jCheckBoxes[i].setSelected(beats[i]);
+            if(beats[i]){
+                jCheckBoxes[i].setBackground(Color.RED);
+            }else {
+                jCheckBoxes[i].setBackground(Color.DARK_GRAY);
+            }
         }
     }
 
@@ -65,7 +64,13 @@ public class RhythmPanel extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
+            JToggleButton root = (JToggleButton) e.getSource();
             beats[beat] = !beats[beat];
+            if (beats[beat]) {
+                root.setBackground(Color.RED);
+            } else {
+                root.setBackground(Color.DARK_GRAY);
+            }
             player.addLoop(instrument, beats);
         }
     }
@@ -86,10 +91,11 @@ public class RhythmPanel extends JPanel {
         jCheckBoxes[b].setBackground(Color.GREEN);
 
         if (b == 0) {
-            jCheckBoxes[player.isTime4() ? 15 : 11].setBackground(Color.DARK_GRAY);
+            int beat = player.isTime4() ? 15 : 11;
+            jCheckBoxes[beat].setBackground(beats[beat] ? Color.RED : Color.DARK_GRAY);
         }
         if (b > 0) {
-            jCheckBoxes[b - 1].setBackground(Color.DARK_GRAY);
+            jCheckBoxes[b - 1].setBackground(beats[b - 1] ? Color.RED : Color.DARK_GRAY);
         }
 
     }

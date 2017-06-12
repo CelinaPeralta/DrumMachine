@@ -13,12 +13,12 @@ public class DrumMachineUI extends JFrame {
     public static ControlPanel controlPanel;
     public static MixerPanel mixerPanel;
     public static RhythmPanel rhythmPanel;
-    public static Font font = new Font(Font.SANS_SERIF, 3, 12);
+    public static Font font = new Font("Helvetica", 3, 11);
 
     public DrumMachineUI() throws Exception {
 
         setTitle("Drum Machine");
-        setSize(1000, 500);
+        setSize(1200, 500);
 
         player = new Player();
 
@@ -47,7 +47,7 @@ public class DrumMachineUI extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setResizable(false);
+        frame.setResizable(true);
 
         LoopThread loopThread = new LoopThread();
         loopThread.setDaemon(true);
