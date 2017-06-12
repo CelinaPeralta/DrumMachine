@@ -1,6 +1,8 @@
 import javax.naming.ldap.Control;
 import javax.sound.midi.Instrument;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.metal.MetalToggleButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +22,8 @@ public class RhythmPanel extends JPanel {
 
         instrument = 0;
 
-        this.player = player;
-
         setLayout(new GridLayout(1, 16, 5, 30));
-        setPreferredSize(new Dimension(getWidth(), 50));
+        setPreferredSize(new Dimension(getWidth(), 75));
 
         jCheckBoxes = new JToggleButton[16];
 
@@ -31,6 +31,15 @@ public class RhythmPanel extends JPanel {
             JToggleButton beat = new JToggleButton();
             beat.addActionListener(new BeatButtonListener(x));
             beat.setOpaque(true);
+            beat.setBackground(Color.DARK_GRAY);
+            beat.setMargin(new Insets(5,5,5,5));
+            beat.setUI(new MetalToggleButtonUI() {
+                @Override
+                protected Color getSelectColor() {
+                    return Color.RED;
+                }
+            });
+
             jCheckBoxes[x] = beat;
             this.add(beat);
         }
@@ -74,14 +83,13 @@ public class RhythmPanel extends JPanel {
         player.play();
         int b = player.getBeat();
 
-
-        jCheckBoxes[b].setBackground(Color.RED);
+        jCheckBoxes[b].setBackground(Color.GREEN);
 
         if (b == 0) {
-            jCheckBoxes[player.isTime4() ? 15 : 11].setBackground(null);
+            jCheckBoxes[player.isTime4() ? 15 : 11].setBackground(Color.DARK_GRAY);
         }
         if (b > 0) {
-            jCheckBoxes[b - 1].setBackground(null);
+            jCheckBoxes[b - 1].setBackground(Color.DARK_GRAY);
         }
 
     }
