@@ -102,8 +102,7 @@ public class RhythmPanel extends JPanel {
 
 
     public void play() {
-        player.play();
-
+        
         int b = player.getBeat();
 
         jCheckBoxes[b].setBackground(Color.GREEN);
@@ -115,5 +114,7 @@ public class RhythmPanel extends JPanel {
         if (b > 0) {
             jCheckBoxes[b - 1].setBackground(beats[b - 1] ? Color.RED : Color.DARK_GRAY);
         }
+
+        player.play();
     }
 }
