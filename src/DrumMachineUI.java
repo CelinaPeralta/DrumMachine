@@ -19,6 +19,7 @@ public class DrumMachineUI extends JFrame {
 
         setTitle("Drum Machine");
         setSize(1200, 500);
+        setLayout(new BorderLayout());
 
         player = new Player();
 
@@ -31,8 +32,6 @@ public class DrumMachineUI extends JFrame {
         mixerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         rhythmPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         controlPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        setLayout(new BorderLayout());
 
         add(headerPanel, BorderLayout.NORTH);
         add(controlPanel, BorderLayout.WEST);

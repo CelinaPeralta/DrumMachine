@@ -32,6 +32,15 @@ public class RhythmPanel extends JPanel {
             JToggleButton beat = new JToggleButton();
             beat.addActionListener(new BeatButtonListener(x));
             beat.setOpaque(true);
+            beat.setText(Integer.toString(x+1));
+            if((x)%4 == 0){
+                beat.setForeground(Color.CYAN);
+                beat.setBorderPainted(true);
+                beat.setBorder(BorderFactory.createMatteBorder(1,0,0,0, Color.YELLOW));
+            }
+            else {
+                beat.setForeground(Color.CYAN);
+            }
             beat.setBackground(Color.DARK_GRAY);
             beat.setUI(new BasicToggleButtonUI());
             jCheckBoxes[x] = beat;
@@ -98,6 +107,5 @@ public class RhythmPanel extends JPanel {
         if (b > 0) {
             jCheckBoxes[b - 1].setBackground(beats[b - 1] ? Color.RED : Color.DARK_GRAY);
         }
-
     }
 }

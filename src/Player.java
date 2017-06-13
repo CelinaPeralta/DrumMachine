@@ -41,6 +41,8 @@ public class Player {
             for (int x = 0; x < beats[y].length; x++)
                 beats[y][x] = false;
         }
+
+        beat_count = 0;
     }
 
     public int getBeat() {

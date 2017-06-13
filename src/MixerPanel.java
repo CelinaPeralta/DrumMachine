@@ -23,7 +23,7 @@ public class MixerPanel extends JPanel {
 
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = getWidth() / 10 - 5;
+        c.ipadx = getWidth() / 10;
 
 //        c.gridheight = getHeight();
 
@@ -37,7 +37,8 @@ public class MixerPanel extends JPanel {
 
             c.gridx = x;
             c.gridy = 0;
-            c.ipady = 10;
+            c.ipady = 50;
+
             add(instrumentLabel, c);
         }
 
@@ -77,6 +78,8 @@ public class MixerPanel extends JPanel {
     public void resetMixer() {
         for (int x = 0; x < DrumSounds.NUM_SOUNDS; x++) {
             gainSliders[x].setValue(-25);
+            gainSliders[x].setValueIsAdjusting(true);
+            ((MuteButtonListener)(muteButtons[x].getActionListeners()[0])).reset();
         }
     }
 
@@ -89,10 +92,15 @@ public class MixerPanel extends JPanel {
         }
 
         @Override
-        public void stateChanged(ChangeEvent e) {
+        public synchronized void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
             if (root.getValueIsAdjusting()) {
                 player.setGain(instrument, root.getValue());
+
+                if (muteButtons[instrument].isSelected()) {
+                    muteButtons[instrument].setSelected(false);
+                    ((MuteButtonListener) (muteButtons[instrument].getActionListeners()[0])).setFalse();
+                }
             }
         }
     }
@@ -101,19 +109,30 @@ public class MixerPanel extends JPanel {
 
         private boolean muted;
         private int instrument;
-        private int originalGain = -25;
+        private int originalGain;
 
         public MuteButtonListener(boolean muted, int instrument) {
             this.muted = muted;
             this.instrument = instrument;
         }
 
+        public void reset(){
+            muted = false;
+        }
+
+        public void setFalse(){
+            muted = false;
+        }
+
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public synchronized void actionPerformed(ActionEvent e) {
             if (muted) {
-                player.setGain(instrument, originalGain);
+                gainSliders[instrument].setValue(originalGain);
+                gainSliders[instrument].setValueIsAdjusting(true);
+                gainSliders[instrument].setValueIsAdjusting(false);
                 muted = false;
             } else {
+                originalGain = gainSliders[instrument].getValue();
                 player.setGain(instrument, -80);
                 muted = true;
             }
