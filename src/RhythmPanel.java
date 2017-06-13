@@ -93,6 +93,14 @@ public class RhythmPanel extends JPanel {
         player.clearLoop();
     }
 
+    public void clear3(){
+        for (int x = 11; x < jCheckBoxes.length; x++) {
+            jCheckBoxes[x].setSelected(false);
+            jCheckBoxes[x].setBackground(Color.DARK_GRAY);
+            beats[x] = false;
+        }
+    }
+
 
     public void play() {
         player.play();

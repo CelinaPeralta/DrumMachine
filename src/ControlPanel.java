@@ -167,6 +167,7 @@ public class ControlPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             timeSignature4 = !timeSignature4;
             player.setTimeSignature4(timeSignature4);
+            rhythmPanel.clear3();
         }
     }
 
@@ -208,6 +209,7 @@ public class ControlPanel extends JPanel {
             isPlaying = false;
             startButton.setSelected(false);
             rhythmPanel.clearBeats();
+            rhythmPanel.clear3();
             mixerPanel.resetMixer();
 
             tempoLabel.setText("Tempo: 120");
