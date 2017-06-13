@@ -86,7 +86,6 @@ public class Sound {
         gainControl.setValue(gain);
     }
 
-
     public synchronized void play(){
         clip.setFramePosition(0);  // Must always rewind!
         clip.start();

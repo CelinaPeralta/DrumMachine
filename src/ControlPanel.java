@@ -200,12 +200,16 @@ public class ControlPanel extends JPanel {
         @Override
         public synchronized void actionPerformed(ActionEvent e) {
             instrumentSlider.setValue(0);
+            instrumentSlider.setValueIsAdjusting(true);
+            instrumentSlider.setValueIsAdjusting(false);
             for (int y = 0; y < beatArray.length; y++) {
                 for (int x = 0; x < beatArray[y].length; x++)
                     beatArray[y][x] = false;
             }
 
             tempoSlider.setValue(120);
+            tempoSlider.setValueIsAdjusting(true);
+            tempoSlider.setValueIsAdjusting(false);
             isPlaying = false;
             startButton.setSelected(false);
             rhythmPanel.clearBeats();
@@ -214,8 +218,6 @@ public class ControlPanel extends JPanel {
 
             tempoLabel.setText("Tempo: 120");
             instrumentLabel.setText("Instrument: " + DrumSounds.audioNames[0].substring(0, DrumSounds.audioNames[0].length() - 4));
-
-
         }
     }
 }
