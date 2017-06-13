@@ -45,7 +45,7 @@ public class ControlPanel extends JPanel {
         add(new JLabel());
 
 
-        tempoSlider = new JSlider(40, 300, tempo);
+        tempoSlider = new JSlider(Constants.TEMPO_MIN, Constants.TEMPO_MAX, tempo);
         tempoSlider.setMajorTickSpacing(5);
         tempoSlider.setPaintTicks(true);
         tempoSlider.setSnapToTicks(true);
@@ -68,7 +68,6 @@ public class ControlPanel extends JPanel {
         add(instrumentLabel);
 
         add(instrumentSlider);
-
 
         String soundName = DrumSounds.audioNames[0];
         instrumentLabel.setHorizontalAlignment(JLabel.CENTER);

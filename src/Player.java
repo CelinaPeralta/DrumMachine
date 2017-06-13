@@ -48,16 +48,17 @@ public class Player {
 
     public void play() {
 
-        if (beat_count >= totalBeats)
-            beat_count = 0;
-        else
-            beat_count++;
-
         for (int j = 0; j < audioClips[beat_count].length; j++) {
             if (beats[beat_count][j]) {
                 audioClips[beat_count][j].play();
             }
         }
+
+        if (beat_count >= totalBeats)
+            beat_count = 0;
+        else
+            beat_count++;
+
     }
 
     public int getBeat() {
