@@ -45,18 +45,6 @@ public class Player {
         beat_count = 0;
     }
 
-    public int getBeat() {
-        return beat_count;
-    }
-
-    public void setTimeSignature4(boolean timeSignature) {
-        timeSignature4 = timeSignature;
-        if (timeSignature4) {
-            totalBeats = 15;
-        } else if (!timeSignature4) {
-            totalBeats = 11;
-        }
-    }
 
     public void play() {
 
@@ -69,6 +57,19 @@ public class Player {
             if (beats[beat_count][j]) {
                 audioClips[beat_count][j].play();
             }
+        }
+    }
+
+    public int getBeat() {
+        return beat_count;
+    }
+
+    public void setTimeSignature4(boolean timeSignature) {
+        timeSignature4 = timeSignature;
+        if (timeSignature4) {
+            totalBeats = 15;
+        } else if (!timeSignature4) {
+            totalBeats = 11;
         }
     }
 

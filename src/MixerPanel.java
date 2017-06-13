@@ -18,14 +18,12 @@ public class MixerPanel extends JPanel {
 
     public MixerPanel() {
 
-        setPreferredSize( new Dimension(700, getHeight()));
+        setPreferredSize(new Dimension(700, getHeight()));
         setLayout(new GridBagLayout());
 
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipadx = getWidth() / 10;
-
-//        c.gridheight = getHeight();
 
         //Instrument Labels
         for (int x = 0; x < DrumSounds.NUM_SOUNDS; x++) {
@@ -79,7 +77,7 @@ public class MixerPanel extends JPanel {
         for (int x = 0; x < DrumSounds.NUM_SOUNDS; x++) {
             gainSliders[x].setValue(Constants.GAIN_MAX);
             gainSliders[x].setValueIsAdjusting(true);
-            ((MuteButtonListener)(muteButtons[x].getActionListeners()[0])).reset();
+            ((MuteButtonListener) (muteButtons[x].getActionListeners()[0])).reset();
         }
     }
 
@@ -116,11 +114,11 @@ public class MixerPanel extends JPanel {
             this.instrument = instrument;
         }
 
-        public void reset(){
+        public void reset() {
             muted = false;
         }
 
-        public void setFalse(){
+        public void setFalse() {
             muted = false;
         }
 
