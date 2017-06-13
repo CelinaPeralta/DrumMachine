@@ -1,4 +1,3 @@
-import com.sun.tools.javac.code.Attribute;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -17,7 +16,7 @@ public class ControlPanel extends JPanel {
     private int tempo;         //in BPM
     private boolean timeSignature4;  //beats per measure and each beat is a quarter note
     private volatile boolean isPlaying = false;
-    private boolean isChanged = false;
+    private boolean isChanged = false; //May use in the future
     private boolean[][] beatArray = new boolean[DrumSounds.NUM_SOUNDS][16];
 
     private JLabel instrumentLabel = new JLabel();
@@ -37,7 +36,6 @@ public class ControlPanel extends JPanel {
 
         currentInstrument = 0;
         rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
-        //rhythmPanel.updateBeats(beatArray[currentInstrument]);
 
         setLayout(new GridLayout(9, 1, 20, 5));
         setPreferredSize(new Dimension(325, getHeight()));
@@ -122,7 +120,7 @@ public class ControlPanel extends JPanel {
 
     public int getCurrentInstrument() {
         return currentInstrument;
-    }
+    } //May use in the future
 
     public int getTempo() {
         return tempo;
@@ -130,15 +128,15 @@ public class ControlPanel extends JPanel {
 
     public boolean getTimeSignature() {
         return timeSignature4;
-    }
+    } //May use in the future
 
     public boolean[][] getBeatArray() {
         return beatArray;
-    }
+    } //May use in the future
 
     public boolean isChanged() {
         return isChanged;
-    }
+    } //May use in the future
 
     public boolean isPlaying() {
         return isPlaying;
@@ -146,7 +144,7 @@ public class ControlPanel extends JPanel {
 
     public void setChangedFalse() {
         isChanged = false;
-    }
+    } //May use in the future
 
 
     public class TempoChangeListener implements ChangeListener {
