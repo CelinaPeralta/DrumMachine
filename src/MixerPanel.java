@@ -91,7 +91,7 @@ public class MixerPanel extends JPanel {
         @Override
         public void stateChanged(ChangeEvent e) {
             JSlider root = (JSlider) e.getSource();
-            if (!root.getValueIsAdjusting()) {
+            if (root.getValueIsAdjusting()) {
                 player.setGain(instrument, root.getValue());
             }
         }

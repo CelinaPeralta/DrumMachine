@@ -78,6 +78,7 @@ public class RhythmPanel extends JPanel {
     public void clearBeats() {
         for (int x = 0; x < jCheckBoxes.length; x++) {
             jCheckBoxes[x].setSelected(false);
+            jCheckBoxes[x].setBackground(Color.DARK_GRAY);
             beats[x] = false;
         }
         player.clearLoop();
