@@ -1,3 +1,5 @@
+import com.sun.tools.javac.code.Attribute;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -30,7 +32,7 @@ public class ControlPanel extends JPanel {
 
     public ControlPanel() {
 
-        tempo = 120;
+        tempo = Constants.DEFAULT_TEMPO;
         timeSignature4 = true;
 
         currentInstrument = 0;
@@ -210,13 +212,14 @@ public class ControlPanel extends JPanel {
             tempoSlider.setValue(120);
             tempoSlider.setValueIsAdjusting(true);
             tempoSlider.setValueIsAdjusting(false);
+            tempoSlider.setValue(Constants.DEFAULT_TEMPO);
             isPlaying = false;
             startButton.setSelected(false);
             rhythmPanel.clearBeats();
             rhythmPanel.clear3();
             mixerPanel.resetMixer();
 
-            tempoLabel.setText("Tempo: 120");
+            tempoLabel.setText("Tempo: " + Constants.DEFAULT_TEMPO);
             instrumentLabel.setText("Instrument: " + DrumSounds.audioNames[0].substring(0, DrumSounds.audioNames[0].length() - 4));
         }
     }

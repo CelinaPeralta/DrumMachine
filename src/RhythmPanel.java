@@ -32,13 +32,12 @@ public class RhythmPanel extends JPanel {
             JToggleButton beat = new JToggleButton();
             beat.addActionListener(new BeatButtonListener(x));
             beat.setOpaque(true);
-            beat.setText(Integer.toString(x+1));
-            if((x)%4 == 0){
+            beat.setText(Integer.toString(x + 1));
+            if ((x) % 4 == 0) {
                 beat.setForeground(Color.CYAN);
                 beat.setBorderPainted(true);
-                beat.setBorder(BorderFactory.createMatteBorder(1,0,0,0, Color.YELLOW));
-            }
-            else {
+                beat.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.YELLOW));
+            } else {
                 beat.setForeground(Color.CYAN);
             }
             beat.setBackground(Color.DARK_GRAY);
@@ -51,9 +50,9 @@ public class RhythmPanel extends JPanel {
     public void updateBeats(boolean[] beats) {
         for (int i = 0; i < jCheckBoxes.length; i++) {
             jCheckBoxes[i].setSelected(beats[i]);
-            if(beats[i]){
+            if (beats[i]) {
                 jCheckBoxes[i].setBackground(Color.RED);
-            }else {
+            } else {
                 jCheckBoxes[i].setBackground(Color.DARK_GRAY);
             }
         }
@@ -93,8 +92,8 @@ public class RhythmPanel extends JPanel {
         player.clearLoop();
     }
 
-    public void clear3(){
-        for (int x = 11; x < jCheckBoxes.length; x++) {
+    public void clear3() {
+        for (int x = 12; x < jCheckBoxes.length; x++) {
             jCheckBoxes[x].setSelected(false);
             jCheckBoxes[x].setBackground(Color.DARK_GRAY);
             beats[x] = false;

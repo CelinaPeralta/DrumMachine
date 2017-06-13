@@ -60,7 +60,7 @@ public class MixerPanel extends JPanel {
         //Gain Sliders
 
         for (int x = 0; x < DrumSounds.NUM_SOUNDS; x++) {
-            JSlider gainSlider = new JSlider(1, -80, 6, -25);
+            JSlider gainSlider = new JSlider(1, Constants.GAIN_MIN, 6, Constants.GAIN_MAX);
             gainSlider.setPaintTicks(true);
             gainSlider.setMajorTickSpacing(5);
             gainSlider.addChangeListener(new GainChangeListener(x));
@@ -77,7 +77,7 @@ public class MixerPanel extends JPanel {
 
     public void resetMixer() {
         for (int x = 0; x < DrumSounds.NUM_SOUNDS; x++) {
-            gainSliders[x].setValue(-25);
+            gainSliders[x].setValue(Constants.GAIN_MAX);
             gainSliders[x].setValueIsAdjusting(true);
             ((MuteButtonListener)(muteButtons[x].getActionListeners()[0])).reset();
         }
@@ -133,7 +133,7 @@ public class MixerPanel extends JPanel {
                 muted = false;
             } else {
                 originalGain = gainSliders[instrument].getValue();
-                player.setGain(instrument, -80);
+                player.setGain(instrument, Constants.GAIN_MIN);
                 muted = true;
             }
         }

@@ -72,18 +72,18 @@ public class Player {
         }
     }
 
-    public void setGain(int instrument, float gain){
+    public void setGain(int instrument, float gain) {
         try {
             for (int j = 0; j < audioClips.length; j++) {
                 Sound newSound = new Sound(DrumSounds.audioNames[instrument]);
                 newSound.setGain(gain);
                 audioClips[j][instrument] = newSound;
             }
+        } catch (Exception e) {
         }
-        catch (Exception e){}
     }
 
-    public boolean isTime4(){
+    public boolean isTime4() {
         return timeSignature4;
     }
 }

@@ -89,6 +89,7 @@ public class Sound {
     public synchronized void play(){
         clip.setFramePosition(0);  // Must always rewind!
         clip.start();
+        clip.flush();
         //clip.loop(20);
     }
 
