@@ -18,7 +18,7 @@ public class MixerPanel extends JPanel {
 
     public MixerPanel() {
 
-        setPreferredSize( new Dimension(800, getHeight()));
+        setPreferredSize( new Dimension(700, getHeight()));
         setLayout(new GridBagLayout());
 
         GridBagConstraints c = new GridBagConstraints();

@@ -37,8 +37,10 @@ public class ControlPanel extends JPanel {
         rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
         //rhythmPanel.updateBeats(beatArray[currentInstrument]);
 
-        setLayout(new GridLayout(7, 1, 20, 5));
+        setLayout(new GridLayout(9, 1, 20, 5));
         setPreferredSize(new Dimension(325, getHeight()));
+
+        add(new JLabel());
 
 
         tempoSlider = new JSlider(40, 300, tempo);
@@ -113,6 +115,8 @@ public class ControlPanel extends JPanel {
         buttonPanel.add(resetButton);
 
         add(buttonPanel);
+
+        add(new JLabel());
     }
 
     public int getCurrentInstrument() {
