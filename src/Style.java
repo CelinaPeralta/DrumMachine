@@ -5,7 +5,6 @@ import java.awt.*;
  */
 public class Style {
 
-    public static Font mixer_font = new Font("Gill Sans Light", Font.PLAIN, 16);
-    public static Font control_font = new Font("Trebuchet MS", Font.PLAIN, 16);
-
+    public static Font mixer_font = new Font("Helvetica", 1, 12);
+    public static Font control_font = new Font("Helvetica", Font.BOLD, 16);
 }

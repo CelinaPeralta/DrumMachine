@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.SliderUI;
-import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,9 +18,6 @@ public class MixerPanel extends JPanel {
 
     public MixerPanel() {
 
-        setBackground(Color.DARK_GRAY);
-        setForeground(Color.WHITE);
-
         setPreferredSize(new Dimension(700, getHeight()));
         setLayout(new GridBagLayout());
 
@@ -36,8 +31,6 @@ public class MixerPanel extends JPanel {
             JLabel instrumentLabel = new JLabel(soundName.substring(0, soundName.length() - 4));
             instrumentLabel.setHorizontalAlignment(JLabel.CENTER);
             instrumentLabel.setFont(Style.mixer_font);
-            instrumentLabel.setForeground(Color.WHITE);
-
             instrumentLabels[x] = instrumentLabel;
 
             c.gridx = x;
@@ -69,7 +62,6 @@ public class MixerPanel extends JPanel {
             gainSlider.setPaintTicks(true);
             gainSlider.setMajorTickSpacing(5);
             gainSlider.addChangeListener(new GainChangeListener(x));
-
             gainSliders[x] = gainSlider;
 
             c.gridx = x;

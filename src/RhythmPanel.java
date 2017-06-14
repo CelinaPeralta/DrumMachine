@@ -34,11 +34,11 @@ public class RhythmPanel extends JPanel {
             beat.setOpaque(true);
             beat.setText(Integer.toString(x + 1));
             if ((x) % 4 == 0) {
-                beat.setForeground(Color.WHITE);
+                beat.setForeground(Color.CYAN);
                 beat.setBorderPainted(true);
-                beat.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.YELLOW));
+                beat.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.YELLOW));
             } else {
-                beat.setForeground(Color.WHITE);
+                beat.setForeground(Color.CYAN);
             }
             beat.setBackground(Color.DARK_GRAY);
             beat.setUI(new BasicToggleButtonUI());
