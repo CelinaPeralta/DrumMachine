@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="DrumMachine:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DrumMachine_jar</output-path>
+    <root id="root">
+      <element id="archive" name="DrumMachine.jar">
+        <element id="module-output" name="DrumMachine" />
+      </element>
+    </root>
+  </artifact>
+</component>

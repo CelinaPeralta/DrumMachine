@@ -2,6 +2,7 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +32,9 @@ public class ControlPanel extends JPanel {
 
     public ControlPanel() {
 
+        setBackground(Color.DARK_GRAY);
+        setForeground(Color.WHITE);
+
         tempo = Constants.DEFAULT_TEMPO;
         timeSignature4 = true;
 
@@ -53,6 +57,7 @@ public class ControlPanel extends JPanel {
 
         tempoLabel.setHorizontalAlignment(JLabel.CENTER);
         tempoLabel.setFont(Style.control_font);
+        tempoLabel.setForeground(Color.WHITE);
         tempoLabel.setText("Tempo: " + tempoSlider.getValue());
 
         add(tempoSlider);
@@ -70,12 +75,15 @@ public class ControlPanel extends JPanel {
         String soundName = DrumSounds.audioNames[0];
         instrumentLabel.setHorizontalAlignment(JLabel.CENTER);
         instrumentLabel.setFont(Style.control_font);
+        instrumentLabel.setForeground(Color.WHITE);
         instrumentLabel.setText("Instrument: " + soundName.substring(0, soundName.length() - 4));
 
         JRadioButton time4 = new JRadioButton("4", true);
         JRadioButton time3 = new JRadioButton("3");
         time4.setActionCommand("4");
+        time4.setForeground(Color.WHITE);
         time3.setActionCommand("3");
+        time3.setForeground(Color.WHITE);
 
         time4.addActionListener(new TimeActionListener());
         time4.setHorizontalAlignment(0);
@@ -91,6 +99,7 @@ public class ControlPanel extends JPanel {
         timeSig.setHorizontalAlignment(0);
 
         JPanel timePanel = new JPanel(new GridLayout(1, 2));
+        timePanel.setBackground(Color.DARK_GRAY);
 
         add(timeSig);
         timePanel.add(time3);
@@ -100,16 +109,21 @@ public class ControlPanel extends JPanel {
         add(timePanel);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        buttonPanel.setBackground(Color.DARK_GRAY);
 
         startButton = new JToggleButton("Start", false);
         startButton.setActionCommand("start");
         startButton.addActionListener(new StartActionListener());
+        startButton.setOpaque(true);
+        startButton.setForeground(Color.BLACK);
 
 
         buttonPanel.add(startButton);
 
         JButton resetButton = new JButton(("Reset"));
         resetButton.addActionListener(new ResetChangeListener());
+        resetButton.setOpaque(true);
+        resetButton.setForeground(Color.BLACK);
 
         buttonPanel.add(resetButton);
 
