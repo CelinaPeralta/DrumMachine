@@ -10,6 +10,6 @@ public class HeaderPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        add(new JLabel("Drum Machine - Brian Cho and Celina Peralta"));
+        add(new JLabel("Rhythm Panel 138 - Brian Cho and Celina Peralta"));
     }
 }

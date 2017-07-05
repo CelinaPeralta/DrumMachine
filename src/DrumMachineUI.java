@@ -17,7 +17,7 @@ public class DrumMachineUI extends JFrame {
 
     public DrumMachineUI() throws Exception {
 
-        setTitle("Drum Machine");
+        setTitle("Rhythm Panel 138");
         setSize(1200, 500);
         setLayout(new BorderLayout());
 

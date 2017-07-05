@@ -74,12 +74,12 @@ public class ControlPanel extends JPanel {
 
         JRadioButton time4 = new JRadioButton("4", true);
         JRadioButton time3 = new JRadioButton("3");
-        time4.setActionCommand("4");
-        time3.setActionCommand("3");
 
-        time4.addActionListener(new TimeActionListener());
+        TimeActionListener timeListener = new TimeActionListener();
+        
+        time4.addActionListener(timeListener);
         time4.setHorizontalAlignment(0);
-        time3.addActionListener(new TimeActionListener());
+        time3.addActionListener(timeListener);
         time3.setHorizontalAlignment(0);
 
         ButtonGroup time = new ButtonGroup();
@@ -162,11 +162,24 @@ public class ControlPanel extends JPanel {
 
     public class TimeActionListener implements ActionListener {
 
+    	private boolean isFour = true;
+    	
         @Override
         public void actionPerformed(ActionEvent e) {
-            timeSignature4 = !timeSignature4;
-            player.setTimeSignature4(timeSignature4);
-            rhythmPanel.clear3();
+        	if(e.getActionCommand().equals("4") && isFour == false){
+        		timeSignature4 = !timeSignature4;
+        		player.setTimeSignature4(timeSignature4);
+        		isFour = true;
+        		System.out.println(e.getActionCommand()+"test");
+        	}
+        	else if(e.getActionCommand().equals("3") && isFour == true){
+        		timeSignature4 = !timeSignature4;
+        		player.setTimeSignature4(timeSignature4);
+        		isFour = false;
+        		System.out.println(e.getActionCommand()+"test");
+        	}
+        	System.out.println(e.getActionCommand());
+            //rhythmPanel.clear3();
         }
     }
 
