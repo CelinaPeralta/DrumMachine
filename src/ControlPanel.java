@@ -1,5 +1,6 @@
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -37,8 +38,8 @@ public class ControlPanel extends JPanel {
         currentInstrument = 0;
         rhythmPanel.setInstrument(currentInstrument, beatArray[currentInstrument]);
 
-        setLayout(new GridLayout(9, 1, 20, 5));
-        setPreferredSize(new Dimension(325, getHeight()));
+        setLayout(new GridLayout(9, 1, 0, 5));
+        setPreferredSize(new Dimension(375, getHeight()));
 
         add(new JLabel());
 
@@ -104,7 +105,6 @@ public class ControlPanel extends JPanel {
         startButton = new JToggleButton("Start", false);
         startButton.setActionCommand("start");
         startButton.addActionListener(new StartActionListener());
-
 
         buttonPanel.add(startButton);
 

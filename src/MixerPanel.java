@@ -30,7 +30,7 @@ public class MixerPanel extends JPanel {
             String soundName = DrumSounds.audioNames[x];
             JLabel instrumentLabel = new JLabel(soundName.substring(0, soundName.length() - 4));
             instrumentLabel.setHorizontalAlignment(JLabel.CENTER);
-            instrumentLabel.setFont(Style.mixer_font);
+            instrumentLabel.setFont(Style.mixerLabel_font);
             instrumentLabels[x] = instrumentLabel;
 
             c.gridx = x;
