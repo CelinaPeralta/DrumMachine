@@ -20,7 +20,6 @@ public class Player {
             for (int j = 0; j < audioClips[i].length; j++) {
                 Sound newSound = new Sound(DrumSounds.audioNames[j]);
                 newSound.setGain(-25);
-
                 audioClips[i][j] = newSound;
             }
         }
